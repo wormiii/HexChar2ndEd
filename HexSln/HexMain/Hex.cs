@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace HexMain
 {
@@ -29,12 +30,14 @@ namespace HexMain
         public int Rank { get; set; }
         public List<Skill> Skills { get; set; }
 
-        public void InitializeCharacter()
+        protected void InitializeCharacter()
         {
             CarryCapacity = Skills.Single(x => x.SkillType == SkillsEnum.Athletics).Value.BaseValue * 10;
             Luck = Rank + 5;
             HitPoints.BaseValue = Rank + Skills.Single(x => x.SkillType == SkillsEnum.Athletics).Value.BaseValue +
                                   Species.BaseHitPoints;
+            SpecialAbilities.ForEach(x => x.AlterCharacter());
+            Equipments.ForEach(x => x.AlterCharacter());
         }
     }
 
@@ -67,6 +70,11 @@ namespace HexMain
             SpecialAbilities.Add(new ForeThinker(this));
             SpecialAbilities.Add(new GreaseMonkey(this));
             SpecialAbilities.Add(new Fated(this));
+
+            Equipments.Add(new SkillChip(this, SkillsEnum.Engineering) {Upgraded = true});
+            Equipments.Add(new SkillChip(this, SkillsEnum.Science) { Upgraded = true });
+
+            InitializeCharacter();
         }
     }
 
@@ -76,12 +84,13 @@ namespace HexMain
         {
             AlienAbilities = new List<SpecialAbility>();
             Movement = new BaseAndAddedValue();
+            Hands = new BaseAndAddedValue();
         }
 
         public SpeciesEnum SpeciesType { get; set; }
         public bool CanWearArmor { get; set; }
         public BaseAndAddedValue Movement { get; set; }
-        public int Hands { get; set; }
+        public BaseAndAddedValue Hands { get; set; }
         public int TargetNumber { get; set; }
         public List<SpecialAbility> AlienAbilities { get; set; }
         public int BaseHitPoints { get; set; }
@@ -95,7 +104,7 @@ namespace HexMain
             CanWearArmor = false;
             BaseHitPoints = 9;
             TargetNumber = 7;
-            Hands = 1;
+            Hands.BaseValue = 1;
             Movement.BaseValue = 4;
             AlienAbilities.Add(new Rocky(character));
             AlienAbilities.Add(new Strong(character));
@@ -103,8 +112,86 @@ namespace HexMain
     }
 
 
-    public class Equipment
+    public abstract class Equipment
     {
+        protected Equipment(Character character)
+        {
+            Character = character;
+        }
+
+        public abstract string Name { get; }
+        protected Character Character { get; private set; }
+        public abstract string Description { get; }
+        //public abstract int CreditCost { get; }
+        public int Mass
+        {
+            get { return BaseMass / (Upgraded ? 2 : 1); }
+        }
+
+        protected abstract int BaseMass { get; }
+        public bool Upgraded { get; set; }
+        //public abstract bool HasPool { get; }
+        //public abstract int Pool { get; }
+        //public abstract string PoolDescription { get; }
+        public abstract void AlterCharacter();
+    }
+
+    public class CyberHand : Equipment
+    {
+        public CyberHand(Character character) : base(character)
+        {
+            
+        }
+
+        public override string Name
+        {
+            get { return "Cyber Hand"; }
+        }
+
+        public override string Description
+        {
+            get { return "Add +1 hand."; }
+        }
+
+        protected override int BaseMass
+        {
+            get { return 6; }
+        }
+
+        public override void AlterCharacter()
+        {
+            Character.Species.Hands.AddedValue += 1;
+        }
+    }
+
+    public class SkillChip : Equipment
+    {
+        public SkillChip(Character character, SkillsEnum skill) : base(character)
+        {
+            Skill = skill;
+        }
+
+        public SkillsEnum Skill { get; private set; }
+
+        public override string Name
+        {
+            get { return string.Format("{0} Skill Chip", Skill); }
+        }
+
+        public override string Description
+        {
+            get { return string.Format("-1 difficulty for {0} skill checks", Skill); }
+        }
+
+        protected override int BaseMass
+        {
+            get { return 2; }
+        }
+
+        public override void AlterCharacter()
+        {
+            Character.Skills.Single(x => x.SkillType == Skill).Value.AddedValue += 1;
+        }
     }
 
     public class Skill
