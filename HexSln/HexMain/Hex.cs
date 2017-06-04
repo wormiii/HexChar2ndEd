@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace HexMain
 {
-    public class Character
+    public abstract class Character
     {
-        public Character()
+        protected Character()
         {
             HitPoints = new BaseAndAddedValue();
             Equipments = new List<Equipment>();
@@ -145,6 +145,7 @@ namespace HexMain
             Character = character;
         }
 
+        public abstract string Name { get; }
         protected Character Character { get; private set; }
         public abstract string Description { get; }
         public abstract bool HasPool { get; }
@@ -169,6 +170,11 @@ namespace HexMain
         public Resourceful
             (Character character) : base(character)
         {
+        }
+
+        public override string Name
+        {
+            get { return "Resourcefull"; }
         }
 
         public override string PoolDescription
@@ -213,6 +219,11 @@ namespace HexMain
         {
         }
 
+        public override string Name
+        {
+            get { return "Space Legs"; }
+        }
+
         public override string Description
         {
             get { return "You’ve got your bearings. You may ignore OOC entirely."; }
@@ -223,6 +234,11 @@ namespace HexMain
     {
         public ToughSilicoid(Character character) : base(character)
         {
+        }
+
+        public override string Name
+        {
+            get { return "Tough Silicoid"; }
         }
 
         public override string Description
@@ -247,6 +263,11 @@ namespace HexMain
         {
         }
 
+        public override string Name
+        {
+            get { return "Mobile"; }
+        }
+
         public override string Description
         {
             get
@@ -267,6 +288,11 @@ namespace HexMain
     {
         public FastLearner(Character character) : base(character)
         {
+        }
+
+        public override string Name
+        {
+            get { return "Fast Learner"; }
         }
 
         public override string Description
@@ -298,16 +324,24 @@ namespace HexMain
         }
     }
 
-
     public class EngineSpecialist : SpecialAbility
     {
         public EngineSpecialist(Character character) : base(character)
         {
         }
 
+        public override string Name
+        {
+            get { return "Engine Specialist"; }
+        }
+
         public override string Description
         {
-            get { return "//bry"; }
+            get
+            {
+                return
+                    "You know how to manage an engine. You get a pool of rerolls to use when pumping an engine for power, transferring power, upgrading, or repairing an engine. Pool: Engineering x2";
+            }
         }
 
         public override bool HasPool
@@ -337,6 +371,11 @@ namespace HexMain
         {
         }
 
+        public override string Name
+        {
+            get { return "Fore Thinker"; }
+        }
+
         public override string Description
         {
             get { return "Roll your skill check before declaring an action"; }
@@ -347,6 +386,11 @@ namespace HexMain
     {
         public GreaseMonkey(Character character) : base(character)
         {
+        }
+
+        public override string Name
+        {
+            get { return "Grease Monkey"; }
         }
 
         public override string Description
@@ -365,6 +409,11 @@ namespace HexMain
         {
         }
 
+        public override string Name
+        {
+            get { return "Fated"; }
+        }
+
         public override string Description
         {
             get
@@ -381,7 +430,12 @@ namespace HexMain
         {
         }
 
-        //bry
+        public override string Name
+        {
+            get { return "Rocky"; }
+        }
+
+
         public override string Description
         {
             get { return "Each time you would be dealt damage reduce it by 1d6."; }
@@ -392,6 +446,11 @@ namespace HexMain
     {
         public Strong(Character character) : base(character)
         {
+        }
+
+        public override string Name
+        {
+            get { return "Strong"; }
         }
 
         public override string Description
