@@ -10,7 +10,8 @@ namespace HexMain
         {
             HitPoints = new BaseAndAddedValue();
             Equipments = new List<Equipment>();
-            Skills = Enum.GetValues(typeof(SkillsEnum)).Cast<SkillsEnum>().Select(x => new Skill()).ToList();
+            Skills = Enum.GetValues(typeof(SkillsEnum)).Cast<SkillsEnum>().Select(x => new Skill(x)).ToList();
+            SpecialAbilities = new List<SpecialAbility>();
         }
 
         public BaseAndAddedValue HitPoints { get; set; }
@@ -33,7 +34,7 @@ namespace HexMain
             CarryCapacity = Skills.Single(x => x.SkillType == SkillsEnum.Athletics).Value.BaseValue * 10;
             Luck = Rank + 5;
             HitPoints.BaseValue = Rank + Skills.Single(x => x.SkillType == SkillsEnum.Athletics).Value.BaseValue +
-                        Species.BaseHitPoints;
+                                  Species.BaseHitPoints;
         }
     }
 
@@ -56,6 +57,16 @@ namespace HexMain
             Skills.Single(x => x.SkillType == SkillsEnum.Engineering).Value.BaseValue = 8;
             Skills.Single(x => x.SkillType == SkillsEnum.Piloting).Value.BaseValue = 2;
             Skills.Single(x => x.SkillType == SkillsEnum.Science).Value.BaseValue = 6;
+
+            SpecialAbilities.Add(new Resourceful(this));
+            SpecialAbilities.Add(new SpaceLegs(this));
+            SpecialAbilities.Add(new ToughSilicoid(this));
+            SpecialAbilities.Add(new Mobile(this));
+            SpecialAbilities.Add(new FastLearner(this));
+            SpecialAbilities.Add(new EngineSpecialist(this));
+            SpecialAbilities.Add(new ForeThinker(this));
+            SpecialAbilities.Add(new GreaseMonkey(this));
+            SpecialAbilities.Add(new Fated(this));
         }
     }
 
@@ -98,11 +109,13 @@ namespace HexMain
 
     public class Skill
     {
-        public Skill()
+        public Skill(SkillsEnum skillType)
         {
+            SkillType = skillType;
             Value = new BaseAndAddedValue();
         }
-        public SkillsEnum SkillType { get; set; }
+
+        public SkillsEnum SkillType { get; private set; }
         public BaseAndAddedValue Value { get; set; }
     }
 
@@ -136,8 +149,8 @@ namespace HexMain
         public abstract string Description { get; }
         public abstract bool HasPool { get; }
         public abstract int Pool { get; }
-        public abstract void AlterCharacter();
         public abstract string PoolDescription { get; }
+        public abstract void AlterCharacter();
     }
 
     public class BaseAndAddedValue
@@ -156,6 +169,11 @@ namespace HexMain
         public Resourceful
             (Character character) : base(character)
         {
+        }
+
+        public override string PoolDescription
+        {
+            get { return ""; }
         }
 
         public override string Description
@@ -209,14 +227,17 @@ namespace HexMain
 
         public override string Description
         {
-            get { return "You get +1 hit point. When you roll your Silicoid damage reduction, roll an extra die and count the higher one."; }
+            get
+            {
+                return
+                    "You get +1 hit point. When you roll your Silicoid damage reduction, roll an extra die and count the higher one.";
+            }
         }
 
-  
+
         public override void AlterCharacter()
         {
             Character.HitPoints.AddedValue += 1;
-
         }
     }
 
@@ -228,10 +249,14 @@ namespace HexMain
 
         public override string Description
         {
-            get { return "Add +2 to your Move attribute. You may ignore OOC for movement. You also get a free reroll on any attempt to move extra squares. You may take this ability any number of times to gain +2 Move and a reroll for each time you take it."; }
+            get
+            {
+                return
+                    "Add +2 to your Move attribute. You may ignore OOC for movement. You also get a free reroll on any attempt to move extra squares. You may take this ability any number of times to gain +2 Move and a reroll for each time you take it.";
+            }
         }
 
-  
+
         public override void AlterCharacter()
         {
             Character.Species.Movement.AddedValue += 2;
@@ -267,6 +292,10 @@ namespace HexMain
         {
             get { return "Science, Engineering, Piloting, Combat"; }
         }
+
+        public override void AlterCharacter()
+        {
+        }
     }
 
 
@@ -280,21 +309,41 @@ namespace HexMain
         {
             get { return "//bry"; }
         }
+
+        public override bool HasPool
+        {
+            get { return true; }
+        }
+
+        public override int Pool
+        {
+            get { return Character.Skills.Single(x => x.SkillType == SkillsEnum.Engineering).Value.BaseValue * 2; }
+        }
+
+        public override string PoolDescription
+        {
+            get { return ""; }
+        }
+
+        public override void AlterCharacter()
+        {
+        }
     }
 
-    public class ForeThinker : SpecialAbility
+    public class ForeThinker : NoChangeInCharacterSpecialAbility
     {
-        public ForeThink(Character character) : base(character)
+        public ForeThinker(Character character)
+            : base(character)
         {
         }
 
         public override string Description
         {
-            get { return "//bry"; }
+            get { return "Roll your skill check before declaring an action"; }
         }
     }
 
-    public class GreaseMonkey : SpecialAbility
+    public class GreaseMonkey : NoChangeInCharacterSpecialAbility
     {
         public GreaseMonkey(Character character) : base(character)
         {
@@ -302,11 +351,15 @@ namespace HexMain
 
         public override string Description
         {
-            get { return "//bry"; }
+            get
+            {
+                return
+                    "You may reroll a die on any skill check to repair, reconfigure or upgrade anything. You treat the two battlestations within the Science Bay, Sick Bay or";
+            }
         }
     }
 
-    public class Fated : SpecialAbility
+    public class Fated : NoChangeInCharacterSpecialAbility
     {
         public Fated(Character character) : base(character)
         {
@@ -314,7 +367,11 @@ namespace HexMain
 
         public override string Description
         {
-            get { return "//bry"; }
+            get
+            {
+                return
+                    "You may choose the result of the first and last points of luck you use in a campaign turn instead of rerolling with it.";
+            }
         }
     }
 
@@ -331,13 +388,12 @@ namespace HexMain
         }
     }
 
-    public class Strong : SpecialAbility
+    public class Strong : NoPoolSpecialAbility
     {
         public Strong(Character character) : base(character)
         {
         }
 
-        //bry
         public override string Description
         {
             get { return "Add +10 Carry and +1 point of damage dealt with melee attacks."; }
@@ -355,12 +411,11 @@ namespace HexMain
 
         public override void AlterCharacter()
         {
-            asdfasdf
             Character.CarryCapacity += 10;
         }
     }
 
-    
+
     public abstract class NoPoolSpecialAbility : SpecialAbility
     {
         public NoPoolSpecialAbility(Character character) : base(character)
@@ -383,6 +438,7 @@ namespace HexMain
             get { return string.Empty; }
         }
     }
+
     public abstract class NoChangeInCharacterSpecialAbility : NoPoolSpecialAbility
     {
         public NoChangeInCharacterSpecialAbility(Character character) : base(character)
@@ -393,6 +449,5 @@ namespace HexMain
         public override void AlterCharacter()
         {
         }
-
     }
 }
