@@ -17,7 +17,7 @@ namespace HexMain
         //public abstract int CreditCost { get; }
         public int Mass
         {
-            get { return BaseMass / (Upgraded ? 2 : 1); }
+            get { return BaseMass; }
         }
 
         protected abstract int BaseMass { get; }
@@ -32,7 +32,8 @@ namespace HexMain
 
     public class CyberHand : Equipment
     {
-        public CyberHand(Character character) : base(character)
+        public CyberHand(Character character)
+            : base(character)
         {
         }
 
@@ -54,6 +55,127 @@ namespace HexMain
         public override void AlterCharacter()
         {
             Character.Species.Hands.AddedValue += 1;
+        }
+    }
+
+    public class CyberFoot : Equipment
+    {
+        public CyberFoot(Character character)
+            : base(character)
+        {
+        }
+
+        public override string Name
+        {
+            get { return "Cyber Foot"; }
+        }
+
+        public override string Description
+        {
+            get { return "+1 movement."; }
+        }
+
+        protected override int BaseMass
+        {
+            get { return 8; }
+        }
+
+        public override void AlterCharacter()
+        {
+            Character.Species.Movement.AddedValue += 1;
+        }
+    }
+
+    public class ToolKit : Equipment
+    {
+        public ToolKit(Character character)
+            : base(character)
+        {
+        }
+
+        public override string Name
+        {
+            get { return "Tool Kit"; }
+        }
+
+        public override string Description
+        {
+            get
+            {
+                return
+                    "Reduce the difficulty of Engineering Skill checks to upgrade, repair, install or put out local fires by 1. An upgraded ToolKit reduces this difficulty by 2 instead.";
+            }
+        }
+
+        protected override int BaseMass
+        {
+            get { return 5; }
+        }
+
+        public override void AlterCharacter()
+        {
+        }
+    }
+
+    public class MedKit : Equipment
+    {
+        public MedKit(Character character)
+            : base(character)
+        {
+        }
+
+        public override string Name
+        {
+            get { return "Med Kit"; }
+        }
+
+        public override string Description
+        {
+            get
+            {
+                return
+                    "A MedKit in hand allows you to use your Science skill to heal, detoxify or de-ionize yourself and/or adjacent characters. If it is upgraded, the difficulty to use your MedKit is reduced by 1.";
+            }
+        }
+
+        protected override int BaseMass
+        {
+            get { return 5; }
+        }
+
+        public override void AlterCharacter()
+        {
+        }
+    }
+
+    public class Blaster : Equipment
+    {
+        public Blaster(Character character)
+            : base(character)
+        {
+        }
+
+        public override string Name
+        {
+            get { return "Blaster"; }
+        }
+
+        public override string Description
+        {
+            get
+            {
+                return
+                    "Damage: 2d6 - 1";
+            }
+        }
+
+        protected override int BaseMass
+        {
+            get { return 4; }
+        }
+
+        public override void AlterCharacter()
+        {
         }
     }
 
