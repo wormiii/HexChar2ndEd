@@ -7,6 +7,7 @@ namespace HexMain
         public Hex()
         {
             Name = "Hexadecimal";
+            PlayerName = "Bryan";
             Rank = 9;
             Species = new SilicoidSpecies(this);
             Profession = ProfessionEnum.Engineer;
@@ -31,14 +32,14 @@ namespace HexMain
             SpecialAbilities.Add(new GreaseMonkey(this));
             SpecialAbilities.Add(new Fated(this));
 
-            Equipments.Add(new SkillChip(this, SkillsEnum.Engineering) { Upgraded = true });
-            Equipments.Add(new SkillChip(this, SkillsEnum.Science) { Upgraded = true });
-            Equipments.Add(new SkillChip(this, SkillsEnum.Combat) );
-            Equipments.Add(new CyberHand(this) { Upgraded = true });
-            Equipments.Add(new CyberFoot(this) { Upgraded = true });
-            Equipments.Add(new MedKit(this) { Upgraded = true });
-            Equipments.Add(new ToolKit(this) { Upgraded = true });
-            Equipments.Add(new Blaster(this) );
+            Equipments.Add(new SkillChip(this, SkillsEnum.Engineering) {Upgraded = true});
+            Equipments.Add(new SkillChip(this, SkillsEnum.Science) {Upgraded = true});
+            Equipments.Add(new SkillChip(this, SkillsEnum.Combat));
+            Equipments.Add(new CyberHand(this) {Upgraded = true});
+            Equipments.Add(new CyberFoot(this) {Upgraded = true});
+            Equipments.Add(new MedKit(this) {Upgraded = true});
+            Equipments.Add(new ToolKit(this) {Upgraded = true});
+            Equipments.Add(new Blaster(this));
 
             InitializeCharacter();
         }

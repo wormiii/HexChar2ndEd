@@ -57,6 +57,11 @@
     <Compile Include="Character.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="Equipments.cs" />
+    <Compile Include="Resources\Text.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Text.resx</DependentUpon>
+    </Compile>
     <Compile Include="Skill.cs" />
     <Compile Include="SpecialAbilities.cs" />
     <Compile Include="Species.cs" />
@@ -91,6 +96,12 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Text.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Text.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

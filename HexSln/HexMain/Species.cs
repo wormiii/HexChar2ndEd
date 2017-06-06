@@ -11,7 +11,7 @@ namespace HexMain
             Hands = new BaseAndAddedValue();
         }
 
-        public SpeciesEnum SpeciesType { get; set; }
+        public abstract string Name { get;  }
         public bool CanWearArmor { get; set; }
         public BaseAndAddedValue Movement { get; set; }
         public BaseAndAddedValue Hands { get; set; }
@@ -24,7 +24,7 @@ namespace HexMain
     {
         public SilicoidSpecies(Character character)
         {
-            SpeciesType = SpeciesEnum.Silicoid;
+            //SpeciesType = SpeciesEnum.Silicoid;
             CanWearArmor = false;
             BaseHitPoints = 9;
             TargetNumber = 7;
@@ -32,6 +32,11 @@ namespace HexMain
             Movement.BaseValue = 4;
             AlienAbilities.Add(new Rocky(character));
             AlienAbilities.Add(new Strong(character));
+        }
+
+        public override string Name
+        {
+            get { return "Silicoid"; }
         }
     }
 }

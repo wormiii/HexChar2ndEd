@@ -5,10 +5,207 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:hexMain="clr-namespace:HexMain"
+        xmlns:res="clr-namespace:HexMain.Resources"
         SizeToContent="WidthAndHeight"
         d:DataContext="{d:DesignInstance hexMain:Hex, IsDesignTimeCreatable=True}"
         Title="MainWindow" Height="Auto" Width="Auto">
+    <Window.Resources>
+        <Style x:Key="BorderStyle" TargetType="{x:Type Border}">
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+        <Style TargetType="{x:Type Border}" BasedOn="{StaticResource BorderStyle}">
+        </Style>
+
+
+
+
+
+    </Window.Resources>
     <Grid>
-        <TextBlock Text="{Binding Name}" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- basics -->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+
+            <Grid x:Name="BasicInfoGrid" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{x:Static res:Text.CharacterName}">
+                                <Binding Path="Name" />
+                                <Binding Path="PlayerName" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                </Border>
+
+                <Border Grid.Row="1" Grid.Column="0">
+                    <TextBlock Text="Rank" />
+                </Border>
+                <Border Grid.Row="1" Grid.Column="1">
+                    <TextBlock Text="{Binding Rank}" />
+                </Border>
+                <Border Grid.Row="2" Grid.Column="0">
+                    <TextBlock Text="Profession" />
+                </Border>
+                <Border Grid.Row="2" Grid.Column="1">
+                    <TextBlock Text="{Binding Profession}" />
+                </Border>
+                <Border Grid.Row="3" Grid.Column="0">
+                    <TextBlock Text="Species" />
+                </Border>
+                <Border Grid.Row="3" Grid.Column="1">
+                    <TextBlock Text="{Binding Species.Name, Mode=OneWay}" />
+                </Border>
+                <Border Grid.Row="4" Grid.Column="0">
+                    <TextBlock Text="Prestige" />
+                </Border>
+                <Border Grid.Row="4" Grid.Column="1">
+                    <TextBlock Text="{Binding Prestige}" />
+                </Border>
+                <Border Grid.Row="5" Grid.Column="0">
+                    <TextBlock Text="XP" />
+                </Border>
+                <Border Grid.Row="5" Grid.Column="1">
+                    <TextBlock Text="{Binding Experience}" />
+                </Border>
+                <Border Grid.Row="6" Grid.Column="0">
+                    <TextBlock Text="Credits" />
+                </Border>
+                <Border Grid.Row="6" Grid.Column="1">
+                    <TextBlock Text="{Binding Credits}" />
+                </Border>
+
+
+            </Grid>
+
+            <Border
+                BorderThickness="4"
+                BorderBrush="Blue"
+                Width="{Binding ElementName=BasicInfoGrid, Path=ActualWidth}"
+
+                Grid.Column="1">
+                <Image
+                    Stretch="UniformToFill"
+                    Source="/Resources/species/silicoid.jpg" />
+
+            </Border>
+
+
+        </Grid>
+
+
+        <!-- numbers -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!-- skills -->
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0">
+                    <TextBlock Text="Skills"  HorizontalAlignment="Center"/>
+                </Border>
+
+                <ItemsControl Grid.Row="1"
+                              Grid.IsSharedSizeScope="True"
+                              ItemsSource="{Binding Skills}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type hexMain:Skill}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="SkillKey" />
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="SkillValue" />
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.Column="0" Style="{StaticResource BorderStyle}">
+                                    <TextBlock Text="{Binding SkillType}" />
+                                </Border>
+                                <Border Grid.Column="1" Style="{StaticResource BorderStyle}" >
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{x:Static res:Text.BaseValueEquation}" >
+                                                <Binding Path="Value.Value"/>
+                                                <Binding Path="Value.BaseValue"/>
+                                                <Binding Path="Value.AddedValue"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+
+            <!-- stats -->
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                    <TextBlock Text="Stats"  HorizontalAlignment="Center"/>
+                </Border>
+
+
+                <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                    <StackPanel>
+                        <TextBlock Text="Hit Points"  HorizontalAlignment="Center"/>
+
+                    </StackPanel>
+                    
+                </Border>
+                
+                
+                
+            </Grid>
+
+        </Grid>
+
     </Grid>
 </Window>

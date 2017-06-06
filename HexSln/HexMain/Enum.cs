@@ -1,9 +1,9 @@
 ﻿namespace HexMain
 {
-    public enum SpeciesEnum
-    {
-        Silicoid
-    }
+    //public enum SpeciesEnum
+    //{
+    //    Silicoid
+    //}
 
     public enum SkillsEnum
     {
