@@ -16,6 +16,11 @@ namespace HexMain
         public abstract int Pool { get; }
         public abstract string PoolDescription { get; }
         public abstract void AlterCharacter();
+
+        public string ShortDescription
+        {
+            get { return "//bry fix later"; }
+        }
     }
 
     public class FastLearner : SpecialAbility
@@ -107,7 +112,7 @@ namespace HexMain
 
         public override string Name
         {
-            get { return "Resourcefull"; }
+            get { return "Resourceful"; }
         }
 
         public override string PoolDescription
@@ -197,7 +202,7 @@ namespace HexMain
 
         public override void AlterCharacter()
         {
-            Character.CarryCapacity += 10;
+            Character.CarryCapacity.AddedValue += 10;
         }
     }
 

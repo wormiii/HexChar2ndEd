@@ -102,6 +102,12 @@
   <data name="BaseValueEquation" xml:space="preserve">
     <value>{0} = {1} + {2}</value>
   </data>
+  <data name="HitPoints" xml:space="preserve">
+    <value>Hit Points: {0} = {1} + {2}</value>
+  </data>
+  <data name="LuckPoints" xml:space="preserve">
+    <value>Luck: {0} = {1} + {2}</value>
+  </data>
   <data name="CharacterName" xml:space="preserve">
     <value>{0} ({1})</value>
   </data>

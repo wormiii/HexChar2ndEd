@@ -77,5 +77,23 @@ namespace HexMain.Resources {
                 return ResourceManager.GetString("CharacterName", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hit Points: {0} = {1} + {2}.
+        /// </summary>
+        public static string HitPoints {
+            get {
+                return ResourceManager.GetString("HitPoints", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Luck: {0} = {1} + {2}.
+        /// </summary>
+        public static string LuckPoints {
+            get {
+                return ResourceManager.GetString("LuckPoints", resourceCulture);
+            }
+        }
     }
 }

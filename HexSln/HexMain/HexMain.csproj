@@ -55,6 +55,10 @@
     </ApplicationDefinition>
     <Compile Include="BaseAndAddedValue.cs" />
     <Compile Include="Character.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Controls\ItemWithPool.xaml.cs">
+      <DependentUpon>ItemWithPool.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Enum.cs" />
     <Compile Include="Equipments.cs" />
     <Compile Include="Resources\Text.Designer.cs">
@@ -65,6 +69,12 @@
     <Compile Include="Skill.cs" />
     <Compile Include="SpecialAbilities.cs" />
     <Compile Include="Species.cs" />
+    <Compile Include="ValueConverters\ProfessionToBrushConverter.cs" />
+    <Compile Include="ValueConverters\IntToObjectConverter.cs" />
+    <Page Include="Controls\ItemWithPool.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

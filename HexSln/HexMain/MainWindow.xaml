@@ -6,6 +6,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:hexMain="clr-namespace:HexMain"
         xmlns:res="clr-namespace:HexMain.Resources"
+        xmlns:valueConverters="clr-namespace:HexMain.ValueConverters"
+        xmlns:controls="clr-namespace:HexMain.Controls"
         SizeToContent="WidthAndHeight"
         d:DataContext="{d:DesignInstance hexMain:Hex, IsDesignTimeCreatable=True}"
         Title="MainWindow" Height="Auto" Width="Auto">
@@ -14,13 +16,10 @@
             <Setter Property="BorderBrush" Value="Black" />
             <Setter Property="BorderThickness" Value="1" />
         </Style>
-        <Style TargetType="{x:Type Border}" BasedOn="{StaticResource BorderStyle}">
-        </Style>
-
-
-
-
-
+        <Style TargetType="{x:Type Border}" BasedOn="{StaticResource BorderStyle}" />
+        <valueConverters:IntToObjectConverter x:Key="IntToObjectConverter" />
+        <valueConverters:ProfessionToBrushConverter x:Key="ProfessionToBrushConverter" />
+        <BooleanToVisibilityConverter x:Key="b2v" />
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -56,7 +55,7 @@
                 </Grid.RowDefinitions>
 
                 <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-                    <TextBlock>
+                    <TextBlock FontWeight="Bold">
                         <TextBlock.Text>
                             <MultiBinding StringFormat="{x:Static res:Text.CharacterName}">
                                 <Binding Path="Name" />
@@ -109,7 +108,7 @@
 
             <Border
                 BorderThickness="4"
-                BorderBrush="Blue"
+                BorderBrush="{Binding Profession, Converter={StaticResource ProfessionToBrushConverter}}"
                 Width="{Binding ElementName=BasicInfoGrid, Path=ActualWidth}"
 
                 Grid.Column="1">
@@ -137,8 +136,8 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <Border Grid.Row="0">
-                    <TextBlock Text="Skills"  HorizontalAlignment="Center"/>
+                <Border Grid.Row="0" Background="Gray">
+                    <TextBlock Text="Skills" HorizontalAlignment="Center" />
                 </Border>
 
                 <ItemsControl Grid.Row="1"
@@ -152,15 +151,15 @@
                                     <ColumnDefinition Width="Auto" SharedSizeGroup="SkillValue" />
                                 </Grid.ColumnDefinitions>
                                 <Border Grid.Column="0" Style="{StaticResource BorderStyle}">
-                                    <TextBlock Text="{Binding SkillType}" />
+                                    <TextBlock Text="{Binding SkillType}" Background="{Binding SkillColor}" />
                                 </Border>
-                                <Border Grid.Column="1" Style="{StaticResource BorderStyle}" >
+                                <Border Grid.Column="1" Style="{StaticResource BorderStyle}">
                                     <TextBlock>
                                         <TextBlock.Text>
-                                            <MultiBinding StringFormat="{x:Static res:Text.BaseValueEquation}" >
-                                                <Binding Path="Value.Value"/>
-                                                <Binding Path="Value.BaseValue"/>
-                                                <Binding Path="Value.AddedValue"/>
+                                            <MultiBinding StringFormat="{x:Static res:Text.BaseValueEquation}">
+                                                <Binding Path="Value.Value" />
+                                                <Binding Path="Value.BaseValue" />
+                                                <Binding Path="Value.AddedValue" />
                                             </MultiBinding>
                                         </TextBlock.Text>
                                     </TextBlock>
@@ -184,28 +183,165 @@
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
-                <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-                    <TextBlock Text="Stats"  HorizontalAlignment="Center"/>
+                <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="Gray">
+                    <TextBlock Text="Stats" HorizontalAlignment="Center" />
                 </Border>
 
 
                 <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
-                    <StackPanel>
-                        <TextBlock Text="Hit Points"  HorizontalAlignment="Center"/>
-
-                    </StackPanel>
-                    
+                    <controls:ItemWithPool Count="{Binding HitPoints.Value}">
+                        <controls:ItemWithPool.Label>
+                            <MultiBinding StringFormat="{x:Static res:Text.HitPoints}">
+                                <Binding Path="HitPoints.Value" />
+                                <Binding Path="HitPoints.BaseValue" />
+                                <Binding Path="HitPoints.AddedValue" />
+                            </MultiBinding>
+                        </controls:ItemWithPool.Label>
+                    </controls:ItemWithPool>
                 </Border>
-                
-                
-                
-            </Grid>
 
+
+                <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                    <controls:ItemWithPool Count="{Binding Luck.Value}">
+                        <controls:ItemWithPool.Label>
+                            <MultiBinding StringFormat="{x:Static res:Text.LuckPoints}">
+                                <Binding Path="Luck.Value" />
+                                <Binding Path="Luck.BaseValue" />
+                                <Binding Path="Luck.AddedValue" />
+                            </MultiBinding>
+                        </controls:ItemWithPool.Label>
+                    </controls:ItemWithPool>
+                </Border>
+
+
+                <Border Grid.Row="3" Grid.Column="0">
+                    <TextBlock Text="Move:" />
+                </Border>
+                <Border Grid.Row="3" Grid.Column="1">
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{x:Static res:Text.BaseValueEquation}">
+                                <Binding Path="Species.Movement.Value" />
+                                <Binding Path="Species.Movement.BaseValue" />
+                                <Binding Path="Species.Movement.AddedValue" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </Border>
+
+
+                <Border Grid.Row="4" Grid.Column="0">
+                    <TextBlock Text="Hands:" />
+                </Border>
+                <Border Grid.Row="4" Grid.Column="1">
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{x:Static res:Text.BaseValueEquation}">
+                                <Binding Path="Species.Hands.Value" />
+                                <Binding Path="Species.Hands.BaseValue" />
+                                <Binding Path="Species.Hands.AddedValue" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </Border>
+
+
+                <Border Grid.Row="5" Grid.Column="0">
+                    <TextBlock Text="Target:" />
+                </Border>
+                <Border Grid.Row="5" Grid.Column="1">
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{x:Static res:Text.BaseValueEquation}">
+                                <Binding Path="Species.TargetNumber.Value" />
+                                <Binding Path="Species.TargetNumber.BaseValue" />
+                                <Binding Path="Species.TargetNumber.AddedValue" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </Border>
+
+
+                <Border Grid.Row="6" Grid.Column="0">
+                    <TextBlock Text="Carry:" />
+                </Border>
+                <Border Grid.Row="6" Grid.Column="1">
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{x:Static res:Text.BaseValueEquation}">
+                                <Binding Path="CarryCapacity.Value" />
+                                <Binding Path="CarryCapacity.BaseValue" />
+                                <Binding Path="CarryCapacity.AddedValue" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </Border>
+
+
+            </Grid>
         </Grid>
 
+        <!-- special abilities -->
+        <Grid Grid.Row="2" Grid.IsSharedSizeScope="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="Gray">
+                <TextBlock Text="Special Abilities" HorizontalAlignment="Center" />
+            </Border>
+            <ItemsControl Grid.Row="1" ItemsSource="{Binding Species.AlienAbilities}" Background="LightGray">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type hexMain:SpecialAbility}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="SpecialAbilityKey" />
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="SpecialAbilityValue" />
+                            </Grid.ColumnDefinitions>
+
+                            <Border Grid.Column="0" Style="{StaticResource BorderStyle}">
+                                <TextBlock Text="{Binding Name}" />
+                            </Border>
+                            <Border Grid.Column="1" Style="{StaticResource BorderStyle}">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Description}" />
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <ItemsControl Grid.Row="2" ItemsSource="{Binding SpecialAbilities}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type hexMain:SpecialAbility}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="SpecialAbilityKey" />
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="SpecialAbilityValue" />
+                            </Grid.ColumnDefinitions>
+
+                            <Border Grid.Column="0" Style="{StaticResource BorderStyle}">
+                                <TextBlock Text="{Binding Name}" />
+                            </Border>
+                            <Border Grid.Column="1" Style="{StaticResource BorderStyle}">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding ShortDescription}" TextWrapping="Wrap" MaxWidth="400"
+                                               HorizontalAlignment="Left" />
+                                    <Grid HorizontalAlignment="Center" Visibility="{Binding HasPool, Converter={StaticResource b2v}}">
+                                        <controls:ItemWithPool Count="{Binding Pool}" Label="{Binding PoolDescription}" />
+                                    </Grid>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
     </Grid>
 </Window>

@@ -8,6 +8,8 @@ namespace HexMain
     {
         protected Character()
         {
+            CarryCapacity = new BaseAndAddedValue();
+            Luck = new BaseAndAddedValue();
             HitPoints = new BaseAndAddedValue();
             Equipments = new List<Equipment>();
             Skills = Enum.GetValues(typeof(SkillsEnum)).Cast<SkillsEnum>().Select(x => new Skill(x)).ToList();
@@ -23,17 +25,17 @@ namespace HexMain
         public Species Species { get; set; }
         public ProfessionEnum Profession { get; set; }
         public List<SpecialAbility> SpecialAbilities { get; set; }
-        public int CarryCapacity { get; set; }
+        public BaseAndAddedValue CarryCapacity { get; set; }
 
         public string Name { get; set; }
-        public int Luck { get; set; }
+        public BaseAndAddedValue Luck { get; set; }
         public int Rank { get; set; }
         public List<Skill> Skills { get; set; }
 
         protected void InitializeCharacter()
         {
-            CarryCapacity = Skills.Single(x => x.SkillType == SkillsEnum.Athletics).Value.BaseValue * 10;
-            Luck = Rank + 5;
+            CarryCapacity.BaseValue = Skills.Single(x => x.SkillType == SkillsEnum.Athletics).Value.BaseValue * 10;
+            Luck.BaseValue = Rank + 5;
             HitPoints.BaseValue = Rank + Skills.Single(x => x.SkillType == SkillsEnum.Athletics).Value.BaseValue +
                                   Species.BaseHitPoints;
             SpecialAbilities.ForEach(x => x.AlterCharacter());

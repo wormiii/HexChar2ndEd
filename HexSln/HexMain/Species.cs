@@ -6,6 +6,7 @@ namespace HexMain
     {
         protected Species()
         {
+            TargetNumber = new BaseAndAddedValue();
             AlienAbilities = new List<SpecialAbility>();
             Movement = new BaseAndAddedValue();
             Hands = new BaseAndAddedValue();
@@ -15,7 +16,7 @@ namespace HexMain
         public bool CanWearArmor { get; set; }
         public BaseAndAddedValue Movement { get; set; }
         public BaseAndAddedValue Hands { get; set; }
-        public int TargetNumber { get; set; }
+        public BaseAndAddedValue TargetNumber { get; set; }
         public List<SpecialAbility> AlienAbilities { get; set; }
         public int BaseHitPoints { get; set; }
     }
@@ -24,10 +25,9 @@ namespace HexMain
     {
         public SilicoidSpecies(Character character)
         {
-            //SpeciesType = SpeciesEnum.Silicoid;
             CanWearArmor = false;
             BaseHitPoints = 9;
-            TargetNumber = 7;
+            TargetNumber.BaseValue = 7;
             Hands.BaseValue = 1;
             Movement.BaseValue = 4;
             AlienAbilities.Add(new Rocky(character));
