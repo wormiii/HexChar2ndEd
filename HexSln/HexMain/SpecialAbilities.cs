@@ -17,10 +17,7 @@ namespace HexMain
         public abstract string PoolDescription { get; }
         public abstract void AlterCharacter();
 
-        public string ShortDescription
-        {
-            get { return "//bry fix later"; }
-        }
+        public abstract string ShortDescription { get; }
     }
 
     public class FastLearner : SpecialAbility
@@ -41,6 +38,11 @@ namespace HexMain
                 return
                     "Increase your Experience awards by 10%. After you have succeeded in skill check actions for each of the 4 main skills (Combat, Piloting, Engineering, Science) you are in your groove for the rest of the campaign turn. Assist actions and Move actions such as Jet Moves will not trigger this bonus. Characters in the groove reduce the difficulty by 1 for all skill checks for the remainder of the campaign turn.";
             }
+        }
+
+        public override string ShortDescription
+        {
+            get { return "Experience +10%, +1 in all 4 skills when you succeed a check in each"; }
         }
 
         public override bool HasPool
@@ -67,6 +69,14 @@ namespace HexMain
     {
         public EngineSpecialist(Character character) : base(character)
         {
+        }
+        public override string ShortDescription
+        {
+            get
+            {
+                return
+                    "Pool of rerolls for pumping for power, transferring power, upgrading, or repairing an engine";
+            }
         }
 
         public override string Name
@@ -95,7 +105,7 @@ namespace HexMain
 
         public override string PoolDescription
         {
-            get { return ""; }
+            get { return "Engineering x2"; }
         }
 
         public override void AlterCharacter()
@@ -109,6 +119,14 @@ namespace HexMain
             (Character character) : base(character)
         {
         }
+        public override string ShortDescription
+        {
+            get
+            {
+                return
+                    "Pool to use Science or Engineering to substitute for any other skill check. You get a professional reroll on the check.";
+            }
+        }
 
         public override string Name
         {
@@ -117,7 +135,7 @@ namespace HexMain
 
         public override string PoolDescription
         {
-            get { return ""; }
+            get { return "Engineering or Science (lower)"; }
         }
 
         public override string Description
@@ -180,6 +198,10 @@ namespace HexMain
         {
         }
 
+        public override string ShortDescription
+        {
+            get { return "Add +10 Carry and +1 point of damage dealt with melee attacks."; }
+        }
         public override string Name
         {
             get { return "Strong"; }
@@ -225,6 +247,14 @@ namespace HexMain
         {
         }
 
+        public override string ShortDescription
+        {
+            get
+            {
+                return
+                    "You get +1 hit point. For Silicoid damage reduction, roll an extra die and count the higher one.";
+            }
+        }
         public override string Name
         {
             get { return "Tough Silicoid"; }
@@ -250,6 +280,14 @@ namespace HexMain
     {
         public Mobile(Character character) : base(character)
         {
+        }
+        public override string ShortDescription
+        {
+            get
+            {
+                return
+                    "Add +2 to your Move.";
+            }
         }
 
         public override string Name
@@ -279,6 +317,10 @@ namespace HexMain
         {
         }
 
+        public override string ShortDescription
+        {
+            get { return "Ignore OOC"; }
+        }
         public override string Name
         {
             get { return "Space Legs"; }
@@ -297,6 +339,10 @@ namespace HexMain
             : base(character)
         {
         }
+        public override string ShortDescription
+        {
+            get { return "Roll your skill check before declaring an action"; }
+        }
 
         public override string Name
         {
@@ -313,6 +359,14 @@ namespace HexMain
     {
         public GreaseMonkey(Character character) : base(character)
         {
+        }
+        public override string ShortDescription
+        {
+            get
+            {
+                return
+                    "You may reroll a die on any skill check to repair, reconfigure or upgrade anything. You treat the two battlestations within the Science Bay, Sick Bay or";
+            }
         }
 
         public override string Name
@@ -334,6 +388,10 @@ namespace HexMain
     {
         public Fated(Character character) : base(character)
         {
+        }
+        public override string ShortDescription
+        {
+            get { return "Choose result of first and last luck use."; }
         }
 
         public override string Name
@@ -364,6 +422,10 @@ namespace HexMain
 
 
         public override string Description
+        {
+            get { return "Each time you would be dealt damage reduce it by 1d6."; }
+        }
+        public override string ShortDescription
         {
             get { return "Each time you would be dealt damage reduce it by 1d6."; }
         }
