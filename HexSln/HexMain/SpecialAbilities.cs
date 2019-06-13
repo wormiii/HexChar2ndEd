@@ -113,6 +113,88 @@ namespace HexMain
         }
     }
 
+    public class JuryRigger : NoChangeInCharacterSpecialAbility
+    {
+        public JuryRigger
+            (Character character) : base(character)
+        {
+        }
+
+        public override string Name => "Jury Rigger";
+        public override string Description => "Jury Rigger";
+
+        public override string ShortDescription
+        {
+            get { return "Once per phase, you may take a free action to attempt to repair the module you are in."; }
+        }
+    }
+
+    public class JetPackJockey : NoChangeInCharacterSpecialAbility
+    {
+        public JetPackJockey
+            (Character character) : base(character)
+        {
+        }
+
+        public override string Name => "Jet Pack Jockey";
+        public override string Description => "asdf";
+
+        public override string ShortDescription
+        {
+            get { return "Reduce jet pack piloting difficulty by 3. Free reroll in jet pack actions."; }
+        }
+    }
+
+
+    public class Obsessive: NoChangeInCharacterSpecialAbility
+    {
+        public Obsessive
+            (Character character) : base(character)
+        {
+        }
+
+        public override string Name => "Obsessive";
+        public override string Description => "asdf";
+
+        public override string ShortDescription
+        {
+            get { return "WHen spending 2nd or more luck on something, create a pool of 3 rerolles you may use on that same thing instead of 1 single reroll"; }
+        }
+    }
+
+
+
+    public class Smuggler : NoChangeInCharacterSpecialAbility
+    {
+        public Smuggler
+            (Character character) : base(character)
+        {
+        }
+
+        public override string Name => "Smuggler";
+        public override string Description => "asdf";
+
+        public override string ShortDescription
+        {
+            get { return "Ignore slag negatives to movement/actions in slagged modules. Free reroll when op/upgrading/installing/uninstall/repairing items in cargo bay"; }
+        }
+    }
+    public class Patient : NoChangeInCharacterSpecialAbility
+    {
+        public Patient
+            (Character character) : base(character)
+        {
+        }
+
+        public override string Name => "Patient";
+        public override string Description => "asdf";
+
+        public override string ShortDescription
+        {
+            get { return "Prepare gives you +3. May convert prepare to overwatch."; }
+        }
+    }
+
     public class Resourceful : SpecialAbility
     {
         public Resourceful

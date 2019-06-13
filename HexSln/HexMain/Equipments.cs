@@ -179,6 +179,68 @@ namespace HexMain
         }
     }
 
+    public class JetPack : Equipment
+    {
+        public JetPack(Character character)
+            : base(character)
+        {
+        }
+
+        public override string Name
+        {
+            get { return "Jet Pack"; }
+        }
+
+        public override string Description
+        {
+            get
+            {
+                return
+                    "Turn a move into jet pack move vs 8 Pilot adding +3 difficulty for each additional move";
+            }
+        }
+
+        protected override int BaseMass
+        {
+            get { return 4; }
+        }
+
+        public override void AlterCharacter()
+        {
+        }
+    }
+
+    public class WristComp : Equipment
+    {
+        public WristComp(Character character)
+            : base(character)
+        {
+        }
+
+        public override string Name
+        {
+            get { return "Wrist Comp"; }
+        }
+
+        public override string Description
+        {
+            get
+            {
+                return
+                    "+1 to science checks to hack/repair/upgrade. Used to ask yes/no question. +3 difficulty for each additional question.";
+            }
+        }
+
+        protected override int BaseMass
+        {
+            get { return 1; }
+        }
+
+        public override void AlterCharacter()
+        {
+        }
+    }
+
     public class SkillChip : Equipment
     {
         public SkillChip(Character character, SkillsEnum skill) : base(character)
