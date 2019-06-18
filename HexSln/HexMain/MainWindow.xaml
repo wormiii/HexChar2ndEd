@@ -296,7 +296,7 @@
         </Grid>
 
         <!-- special abilities -->
-        <Grid Grid.Row="2" Grid.Column="0" Grid.IsSharedSizeScope="True"  Grid.ColumnSpan="2" HorizontalAlignment="Left" MaxWidth="500">
+        <Grid Grid.Row="2" Grid.Column="0" Grid.IsSharedSizeScope="True"  Grid.ColumnSpan="2" HorizontalAlignment="Left" MaxWidth="1700">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -342,7 +342,7 @@
                             <Border Grid.Column="1" Style="{StaticResource BorderStyle}">
                                 <StackPanel>
                                     <TextBlock Text="{Binding ShortDescription}" TextWrapping="Wrap" 
-                                               MaxWidth="400"
+                                               MaxWidth="550"
                                                HorizontalAlignment="Left" />
                                     <Grid HorizontalAlignment="Center" Visibility="{Binding HasPool, Converter={StaticResource b2v}}">
                                         <controls:ItemWithPool Count="{Binding Pool}" Label="{Binding PoolDescription}" />
@@ -388,7 +388,7 @@
             </Border>
 
 
-            <ItemsControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4"  ItemsSource="{Binding Equipments}" MaxWidth="500">
+            <ItemsControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4"  ItemsSource="{Binding Equipments}" MaxWidth="635">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="{x:Type hexMain:Equipment}">
                         <Grid>
