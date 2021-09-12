@@ -65,6 +65,52 @@ namespace HexMain
         }
     }
 
+    public class Doctor : SpecialAbility
+    {
+        public Doctor(Character character) : base(character)
+        {
+        }
+
+        public override string Name
+        {
+            get { return "Doctor"; }
+        }
+
+        public override string Description
+        {
+            get
+            {
+                return
+                    "Pool to reroll skill checks to heal, detoxity, etc. or on the healing dice. Pool of Science x2";
+
+            }
+        }
+
+        public override string ShortDescription
+        {
+            get { return "Pool to reroll heal stuff"; }
+        }
+
+        public override bool HasPool
+        {
+            get { return true; }
+        }
+
+        public override int Pool
+        {
+            get { return 2 * Character.Skills.Single(x => x.SkillType == SkillsEnum.Science).Value.BaseValue; }
+        }
+
+        public override string PoolDescription
+        {
+            get { return "Science"; }
+        }
+
+        public override void AlterCharacter()
+        {
+        }
+    }
+
     public class EngineSpecialist : SpecialAbility
     {
         public EngineSpecialist(Character character) : base(character)
@@ -434,6 +480,28 @@ namespace HexMain
         public override string Description
         {
             get { return "Roll your skill check before declaring an action"; }
+        }
+    }
+
+    public class Healer : NoChangeInCharacterSpecialAbility
+    {
+        public Healer(Character character)
+            : base(character)
+        {
+        }
+        public override string ShortDescription
+        {
+            get { return "When heal for 1 die, heal for additional die"; }
+        }
+
+        public override string Name
+        {
+            get { return "Healer"; }
+        }
+
+        public override string Description
+        {
+            get { return "When you heal a player for at least 1 die, role an additional die of healing"; }
         }
     }
 

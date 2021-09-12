@@ -38,6 +38,7 @@ namespace HexMain
             Luck.BaseValue = Rank + 5;
             HitPoints.BaseValue = Rank + Skills.Single(x => x.SkillType == SkillsEnum.Athletics).Value.BaseValue +
                                   Species.BaseHitPoints;
+            Species.AlienAbilities.ForEach(x => x.AlterCharacter());
             SpecialAbilities.ForEach(x => x.AlterCharacter());
             Equipments.ForEach(x => x.AlterCharacter());
         }

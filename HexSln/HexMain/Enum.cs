@@ -13,7 +13,8 @@ namespace HexMain
 
     public enum ProfessionEnum
     {
-        [ProfessionToSkill(SkillsEnum.Engineering)] Engineer
+        [ProfessionToSkill(SkillsEnum.Engineering)] Engineer,
+        [ProfessionToSkill(SkillsEnum.Science)] Scientist
     }
 
     [AttributeUsage(AttributeTargets.Field)]

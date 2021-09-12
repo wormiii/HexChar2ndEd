@@ -9,6 +9,7 @@
         {
             InitializeComponent();
             DataContext = new Hex();
+            DataContext = new Hex();
         }
     }
 }
