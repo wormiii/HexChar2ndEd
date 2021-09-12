@@ -122,11 +122,17 @@
                 Width="{Binding ElementName=BasicInfoGrid, Path=ActualWidth}"
 
                 Grid.Column="1">
-                <Image
-                    Stretch="UniformToFill"
-                    Source="/Resources/species/silicoid.jpg" />
+                    <Grid>
 
-            </Border>
+                        <!--<Image
+                    Stretch="UniformToFill"
+                    Source="/Resources/species/silicoid.jpg" />-->
+                        <Image
+                    Stretch="UniformToFill"
+                    Source="/Resources/species/zoallan.png" />
+                    </Grid>
+
+                </Border>
 
 
         </Grid>

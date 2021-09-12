@@ -404,6 +404,75 @@ namespace HexMain
         }
     }
 
+
+    public class Carapice : NoPoolSpecialAbility
+    {
+        public Carapice(Character character) : base(character)
+        {
+        }
+
+        public override string ShortDescription
+        {
+            get
+            {
+                return
+                    "All damage reduced by -2";
+            }
+        }
+        public override string Name
+        {
+            get { return "Carapice"; }
+        }
+
+        public override string Description
+        {
+            get
+            {
+                return
+                    "All damage reduced by -2";
+            }
+        }
+
+
+        public override void AlterCharacter()
+        {
+        }
+    }
+
+    public class DirtyFighter : NoPoolSpecialAbility
+    {
+        public DirtyFighter(Character character) : base(character)
+        {
+        }
+
+        public override string ShortDescription
+        {
+            get
+            {
+                return
+                    "Targets you hit take -3 penalty on skill checks";
+            }
+        }
+        public override string Name
+        {
+            get { return "Dirty Fighter"; }
+        }
+
+        public override string Description
+        {
+            get
+            {
+                return
+                    "Targets you hit take -3 penalty on skill checks (until fully healed)";
+            }
+        }
+
+
+        public override void AlterCharacter()
+        {
+        }
+    }
+
     public class Mobile : NoPoolSpecialAbility
     {
         public Mobile(Character character) : base(character)

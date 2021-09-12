@@ -39,4 +39,22 @@ namespace HexMain
             get { return "Silicoid"; }
         }
     }
+
+    public class ZoallanSpecies : Species
+    {
+        public ZoallanSpecies(Character character)
+        {
+            CanWearArmor = false;
+            BaseHitPoints = 4;
+            TargetNumber.BaseValue = 7;
+            Hands.BaseValue = 3;
+            Movement.BaseValue = 7;
+            AlienAbilities.Add(new Carapice(character));
+        }
+
+        public override string Name
+        {
+            get { return "Zoallan"; }
+        }
+    }
 }

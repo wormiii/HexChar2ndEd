@@ -55,6 +55,7 @@
     </ApplicationDefinition>
     <Compile Include="BaseAndAddedValue.cs" />
     <Compile Include="Character.cs" />
+    <Compile Include="Chelle.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Controls\ItemWithPool.xaml.cs">
       <DependentUpon>ItemWithPool.xaml</DependentUpon>
@@ -122,9 +123,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\species\silicoid.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\species\zoallan.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
