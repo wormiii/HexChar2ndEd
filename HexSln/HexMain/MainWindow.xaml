@@ -124,12 +124,44 @@
                 Grid.Column="1">
                     <Grid>
 
-                        <!--<Image
-                    Stretch="UniformToFill"
-                    Source="/Resources/species/silicoid.jpg" />-->
-                        <Image
-                    Stretch="UniformToFill"
-                    Source="/Resources/species/zoallan.png" />
+
+
+                        <Grid>
+                            <Grid.Style>
+                                <Style TargetType="{x:Type Grid}">
+                                    <Setter Property="Visibility" Value="Collapsed"></Setter>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Species.SpeciesType}" Value="{x:Static hexMain:SpeciesTypeEnum.Silicoid}">
+                                            <Setter Property="Visibility" Value="Visible"></Setter>
+
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Grid.Style>
+                            <Image
+                                Stretch="UniformToFill"
+                                Source="/Resources/species/silicoid.jpg" />
+                        </Grid>
+                        <Grid>
+                            <Grid.Style>
+                                <Style TargetType="{x:Type Grid}">
+                                    <Setter Property="Visibility" Value="Collapsed"></Setter>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Species.SpeciesType}" Value="{x:Static hexMain:SpeciesTypeEnum.Zoallan}">
+                                            <Setter Property="Visibility" Value="Visible"></Setter>
+
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Grid.Style>
+                            <Image
+                                Stretch="UniformToFill"
+                                Source="/Resources/species/zoallan.png" />
+
+                        </Grid>
+
+
+
                     </Grid>
 
                 </Border>

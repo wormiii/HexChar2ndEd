@@ -43,4 +43,10 @@ namespace HexMain
 
         public SkillsEnum Skill { get; private set; }
     }
+
+    public enum SpeciesTypeEnum
+    {
+        Silicoid,
+        Zoallan
+    }
 }

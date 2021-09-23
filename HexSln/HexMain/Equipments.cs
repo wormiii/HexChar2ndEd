@@ -196,7 +196,7 @@ namespace HexMain
             get
             {
                 return
-                    "Turn a move into jet pack move vs 8 Pilot adding +3 difficulty for each additional move";
+                    "Turn a move into jet pack move vs 8 Pilot adding +3 difficulty for each additional move (Upgraded, 1 less difficult)";
             }
         }
 
@@ -268,6 +268,10 @@ namespace HexMain
         public override void AlterCharacter()
         {
             Character.Skills.Single(x => x.SkillType == Skill).Value.AddedValue += 1;
+            if (Skill == SkillsEnum.Athletics)
+            {
+                Character.CarryCapacity.AddedValue += 10;
+            }
         }
     }
 }

@@ -508,6 +508,43 @@ namespace HexMain
         }
     }
 
+    public class TriageMedic : NoPoolSpecialAbility
+    {
+        public TriageMedic(Character character) : base(character)
+        {
+        }
+
+        public override string ShortDescription
+        {
+            get
+            {
+                return
+                    "Heal additional targets for +1 difficulty";
+            }
+        }
+
+        public override string Name
+        {
+            get { return "Triage Medic"; }
+        }
+
+        public override string Description
+        {
+            get
+            {
+                return
+                    "Heal additional targets for +1 difficulty";
+            }
+        }
+
+
+        public override void AlterCharacter()
+        {
+        }
+    }
+
+
+
     public class SpaceLegs : NoChangeInCharacterSpecialAbility
     {
         public SpaceLegs(Character character) : base(character)

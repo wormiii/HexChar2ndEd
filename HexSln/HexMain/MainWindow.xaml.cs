@@ -9,7 +9,7 @@
         {
             InitializeComponent();
             DataContext = new Hex();
-            DataContext = new Chelle();
+            //DataContext = new Chelle();
         }
     }
 }

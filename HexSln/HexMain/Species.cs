@@ -12,6 +12,7 @@ namespace HexMain
             Hands = new BaseAndAddedValue();
         }
 
+        public abstract SpeciesTypeEnum SpeciesType { get; }
         public abstract string Name { get;  }
         public bool CanWearArmor { get; set; }
         public BaseAndAddedValue Movement { get; set; }
@@ -38,10 +39,13 @@ namespace HexMain
         {
             get { return "Silicoid"; }
         }
+
+        public override SpeciesTypeEnum SpeciesType => SpeciesTypeEnum.Silicoid;
     }
 
     public class ZoallanSpecies : Species
     {
+        public override SpeciesTypeEnum SpeciesType => SpeciesTypeEnum.Zoallan;
         public ZoallanSpecies(Character character)
         {
             CanWearArmor = false;
