@@ -13,7 +13,7 @@ namespace HexMain
 
     public enum ProfessionEnum
     {
-        [ProfessionToSkill(SkillsEnum.Combat)] Fighter,
+        [ProfessionToSkill(SkillsEnum.Combat)] Marine,
         [ProfessionToSkill(SkillsEnum.Engineering)] Engineer,
         [ProfessionToSkill(SkillsEnum.Science)] Scientist
     }

@@ -178,6 +178,36 @@ namespace HexMain
         {
         }
     }
+    public class Voltrex : Equipment
+    {
+        public Voltrex(Character character)
+            : base(character)
+        {
+        }
+
+        public override string Name
+        {
+            get { return "Voltrex"; }
+        }
+
+        public override string Description
+        {
+            get
+            {
+                return
+                    "Damage: 1d6; up to 4; -1 for every extra target to hit";
+            }
+        }
+
+        protected override int BaseMass
+        {
+            get { return 10; }
+        }
+
+        public override void AlterCharacter()
+        {
+        }
+    }
 
     public class JetPack : Equipment
     {

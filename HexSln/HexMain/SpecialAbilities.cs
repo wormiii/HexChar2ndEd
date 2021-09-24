@@ -65,6 +65,56 @@ namespace HexMain
         }
     }
 
+
+    public class SharpShooter : SpecialAbility
+    {
+        public SharpShooter(Character character) : base(character)
+        {
+        }
+
+        public override string Name
+        {
+            get { return "Sharp Shooter"; }
+        }
+
+        public override string Description
+        {
+            get
+            {
+                return
+                    "Reroll damage, pool of Combat x 2";
+            }
+        }
+
+        public override string ShortDescription
+        {
+            get
+            {
+                return
+                    "Reroll damage, pool of Combat x 2";
+            }
+        }
+
+        public override bool HasPool
+        {
+            get { return true; }
+        }
+
+        public override int Pool
+        {
+            get { return Character.Skills.Single(x => x.SkillType == SkillsEnum.Combat).Value.BaseValue * 2; }
+        }
+
+        public override string PoolDescription
+        {
+            get { return "Combat"; }
+        }
+
+        public override void AlterCharacter()
+        {
+        }
+    }
+
     public class Doctor : SpecialAbility
     {
         public Doctor(Character character) : base(character)

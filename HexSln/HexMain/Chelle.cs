@@ -8,24 +8,26 @@ namespace HexMain
         {
             Name = "Bahkwy-Bah";
             PlayerName = "'Chelle";
-            Rank = 1;
+            Rank = 3;
             Species = new ZoallanSpecies(this);
-            Profession = ProfessionEnum.Fighter;
+            Profession = ProfessionEnum.Marine;
 
-            Credits = 500;
-            Prestige = 0;
-            Experience = 0;
+            Credits = 525;
+            Prestige = 200;
+            Experience = 200;
 
             // 13
             Skills.Single(x => x.SkillType == SkillsEnum.Athletics).Value.BaseValue = 2;
             Skills.Single(x => x.SkillType == SkillsEnum.Combat).Value.BaseValue = 4;
             Skills.Single(x => x.SkillType == SkillsEnum.Engineering).Value.BaseValue = 0;
-            Skills.Single(x => x.SkillType == SkillsEnum.Piloting).Value.BaseValue = 0;
-            Skills.Single(x => x.SkillType == SkillsEnum.Science).Value.BaseValue = 0;
+            Skills.Single(x => x.SkillType == SkillsEnum.Piloting).Value.BaseValue = 2;
+            Skills.Single(x => x.SkillType == SkillsEnum.Science).Value.BaseValue = 2;
 
             SpecialAbilities.Add(new DirtyFighter(this));
+            SpecialAbilities.Add(new SharpShooter(this));
+           // SpecialAbilities.Add(new SharpShooter(this));
 
-            Equipments.Add(new Blaster(this));
+            Equipments.Add(new Voltrex(this));
             Equipments.Add(new MedKit(this));
 
             InitializeCharacter();
