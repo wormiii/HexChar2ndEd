@@ -195,7 +195,7 @@ namespace HexMain
             get
             {
                 return
-                    "Damage: 1d6; up to 4; -1 for every target to hit; upgraded: 1 easier to hit";
+                    "Damage: 1d6; up to 4; -1 for every target to hit; upgraded: +1 easier to hit";
             }
         }
 

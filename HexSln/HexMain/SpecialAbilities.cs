@@ -275,6 +275,26 @@ namespace HexMain
             get { return "Ignore slag negatives to movement/actions in slagged modules. Free reroll when op/upgrading/installing/uninstall/repairing items in cargo bay"; }
         }
     }
+
+
+    public class Enraged : NoChangeInCharacterSpecialAbility
+    {
+        public Enraged
+            (Character character) : base(character)
+        {
+        }
+
+        public override string Name => "Enraged";
+        public override string Description => "+3 combat skill for rest of round when injured by an enemy";
+
+        public override string ShortDescription
+        {
+            get { return "+3 combat skill for rest of round when injured by an enemy"; }
+        }
+    }
+
+
+
     public class Patient : NoChangeInCharacterSpecialAbility
     {
         public Patient

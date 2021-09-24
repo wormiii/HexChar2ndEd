@@ -6,7 +6,7 @@ namespace HexMain
     {
         public Hex()
         {
-            Name = "Hexadecimal";
+            Name = "Hexadecimal, Jr.";
             PlayerName = "Bryan";
             Rank = 6;
             Species = new SilicoidSpecies(this);
