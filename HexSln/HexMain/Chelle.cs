@@ -27,7 +27,7 @@ namespace HexMain
             SpecialAbilities.Add(new SharpShooter(this));
            // SpecialAbilities.Add(new SharpShooter(this));
 
-            Equipments.Add(new Voltrex(this));
+            Equipments.Add(new Voltrex(this){Upgraded = true});
             Equipments.Add(new MedKit(this));
 
             InitializeCharacter();
