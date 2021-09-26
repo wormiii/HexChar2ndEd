@@ -366,6 +366,57 @@ namespace HexMain
         {
         }
     }
+    public class ShockTrooper : SpecialAbility
+    {
+        public ShockTrooper
+            (Character character) : base(character)
+        {
+        }
+        public override string ShortDescription
+        {
+            get
+            {
+                return
+                    "As a free action, go into overwatch at the end of your last movement in a phase.";
+            }
+        }
+
+        public override string Name
+        {
+            get { return "Shock Trooper"; }
+        }
+
+        public override string PoolDescription
+        {
+            get { return "Combat x 2"; }
+        }
+
+        public override string Description
+        {
+            get
+            {
+                return
+                    "As a free action, go into overwatch at the end of your last movement in a phase.";
+            }
+        }
+
+        public override bool HasPool
+        {
+            get { return true; }
+        }
+
+        public override int Pool
+        {
+            get
+            {
+    return Character.Skills.Single(x => x.SkillType == SkillsEnum.Combat).Value.BaseValue;
+            }
+        }
+
+        public override void AlterCharacter()
+        {
+        }
+    }
 
     public abstract class NoPoolSpecialAbility : SpecialAbility
     {

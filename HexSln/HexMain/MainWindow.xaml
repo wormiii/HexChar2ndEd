@@ -16,450 +16,509 @@
             <Setter Property="BorderBrush" Value="Black" />
             <Setter Property="BorderThickness" Value="1" />
         </Style>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="2" />
+        </Style>
         <Style TargetType="{x:Type Border}" BasedOn="{StaticResource BorderStyle}" />
-        <valueConverters:IntToObjectConverter x:Key="IntToObjectConverter" />
         <valueConverters:ProfessionToBrushConverter x:Key="ProfessionToBrushConverter" />
         <BooleanToVisibilityConverter x:Key="b2v" />
     </Window.Resources>
-    <Border
-        Margin="10"
-        BorderThickness="10"
-        CornerRadius="10"
-        BorderBrush="{Binding Profession, Converter={StaticResource ProfessionToBrushConverter}}"
->
-        <Grid Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
+    <StackPanel>
 
-        <!-- basics -->
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-
-
-            <Grid x:Name="BasicInfoGrid" Grid.Column="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-
+        <Border
+            Margin="20"
+            BorderThickness="10"
+            CornerRadius="10"
+            BorderBrush="{Binding Profession, Converter={StaticResource ProfessionToBrushConverter}}">
+            <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
 
-                <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-                    <TextBlock FontWeight="Bold">
-                        <TextBlock.Text>
-                            <MultiBinding StringFormat="{x:Static res:Text.CharacterName}">
-                                <Binding Path="Name" />
-                                <Binding Path="PlayerName" />
-                            </MultiBinding>
-                        </TextBlock.Text>
-                    </TextBlock>
-
-                </Border>
-
-                <Border Grid.Row="1" Grid.Column="0">
-                    <TextBlock Text="Rank" />
-                </Border>
-                <Border Grid.Row="1" Grid.Column="1">
-                    <TextBlock Text="{Binding Rank}" />
-                </Border>
-                <Border Grid.Row="2" Grid.Column="0">
-                    <TextBlock Text="Profession" />
-                </Border>
-                <Border Grid.Row="2" Grid.Column="1">
-                    <TextBlock Text="{Binding Profession}" />
-                </Border>
-                <Border Grid.Row="3" Grid.Column="0">
-                    <TextBlock Text="Species" />
-                </Border>
-                <Border Grid.Row="3" Grid.Column="1">
-                    <TextBlock Text="{Binding Species.Name, Mode=OneWay}" />
-                </Border>
-                <Border Grid.Row="4" Grid.Column="0">
-                    <TextBlock Text="Prestige" />
-                </Border>
-                <Border Grid.Row="4" Grid.Column="1">
-                    <TextBlock Text="{Binding Prestige}" />
-                </Border>
-                <Border Grid.Row="5" Grid.Column="0">
-                    <TextBlock Text="XP" />
-                </Border>
-                <Border Grid.Row="5" Grid.Column="1">
-                    <TextBlock Text="{Binding Experience}" />
-                </Border>
-                <Border Grid.Row="6" Grid.Column="0">
-                    <TextBlock Text="Credits" />
-                </Border>
-                <Border Grid.Row="6" Grid.Column="1">
-                    <TextBlock Text="{Binding Credits}" />
-                </Border>
+                <!-- basics -->
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
 
-            </Grid>
+                    <Grid x:Name="BasicInfoGrid" Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
 
-            <Border
-                BorderThickness="4"
-                BorderBrush="{Binding Profession, Converter={StaticResource ProfessionToBrushConverter}}"
-                Width="{Binding ElementName=BasicInfoGrid, Path=ActualWidth}"
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
 
-                Grid.Column="1">
-                    <Grid>
+                        <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                            <TextBlock FontWeight="Bold">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{x:Static res:Text.CharacterName}">
+                                        <Binding Path="Name" />
+                                        <Binding Path="PlayerName" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
 
+                        </Border>
 
-
-                        <Grid>
-                            <Grid.Style>
-                                <Style TargetType="{x:Type Grid}">
-                                    <Setter Property="Visibility" Value="Collapsed"></Setter>
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Species.SpeciesType}" Value="{x:Static hexMain:SpeciesTypeEnum.Silicoid}">
-                                            <Setter Property="Visibility" Value="Visible"></Setter>
-
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Grid.Style>
-                            <Image
-                                Stretch="UniformToFill"
-                                Source="/Resources/species/silicoid.jpg" />
-                        </Grid>
-                        <Grid>
-                            <Grid.Style>
-                                <Style TargetType="{x:Type Grid}">
-                                    <Setter Property="Visibility" Value="Collapsed"></Setter>
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Species.SpeciesType}" Value="{x:Static hexMain:SpeciesTypeEnum.Zoallan}">
-                                            <Setter Property="Visibility" Value="Visible"></Setter>
-
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Grid.Style>
-                            <Image
-                                Stretch="UniformToFill"
-                                Source="/Resources/species/zoallan.png" />
-
-                        </Grid>
-
+                        <Border Grid.Row="1" Grid.Column="0">
+                            <TextBlock Text="Rank" />
+                        </Border>
+                        <Border Grid.Row="1" Grid.Column="1">
+                            <TextBlock Text="{Binding Rank}" />
+                        </Border>
+                        <Border Grid.Row="2" Grid.Column="0">
+                            <TextBlock Text="Profession" />
+                        </Border>
+                        <Border Grid.Row="2" Grid.Column="1">
+                            <TextBlock Text="{Binding Profession}" />
+                        </Border>
+                        <Border Grid.Row="3" Grid.Column="0">
+                            <TextBlock Text="Species" />
+                        </Border>
+                        <Border Grid.Row="3" Grid.Column="1">
+                            <TextBlock Text="{Binding Species.Name, Mode=OneWay}" />
+                        </Border>
+                        <Border Grid.Row="4" Grid.Column="0">
+                            <TextBlock Text="Prestige" />
+                        </Border>
+                        <Border Grid.Row="4" Grid.Column="1">
+                            <TextBlock Text="{Binding Prestige}" />
+                        </Border>
+                        <Border Grid.Row="5" Grid.Column="0">
+                            <TextBlock Text="XP" />
+                        </Border>
+                        <Border Grid.Row="5" Grid.Column="1">
+                            <TextBlock Text="{Binding Experience}" />
+                        </Border>
+                        <Border Grid.Row="6" Grid.Column="0">
+                            <TextBlock Text="Credits" />
+                        </Border>
+                        <Border Grid.Row="6" Grid.Column="1">
+                            <TextBlock Text="{Binding Credits}" />
+                        </Border>
 
 
                     </Grid>
 
-                </Border>
+                    <Border
+                        BorderThickness="4"
+                        BorderBrush="{Binding Profession, Converter={StaticResource ProfessionToBrushConverter}}"
+                        Width="{Binding ElementName=BasicInfoGrid, Path=ActualWidth}"
+
+                        Grid.Column="1">
+                        <Grid>
 
 
-        </Grid>
-
-
-        <!-- numbers -->
-        <Grid Grid.Row="0" Grid.Column="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-
-            <!-- skills -->
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-
-                <Border Grid.Row="0" Background="Gray">
-                    <TextBlock Text="Skills" HorizontalAlignment="Center" />
-                </Border>
-
-                <ItemsControl Grid.Row="1"
-                              Grid.IsSharedSizeScope="True"
-                              ItemsSource="{Binding Skills}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate DataType="{x:Type hexMain:Skill}">
                             <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" SharedSizeGroup="SkillKey" />
-                                    <ColumnDefinition Width="Auto" SharedSizeGroup="SkillValue" />
-                                </Grid.ColumnDefinitions>
-                                <Border Grid.Column="0" Style="{StaticResource BorderStyle}">
-                                    <TextBlock Text="{Binding SkillType}" Background="{Binding SkillColor}" />
-                                </Border>
-                                <Border Grid.Column="1" Style="{StaticResource BorderStyle}">
-                                    <TextBlock>
-                                        <TextBlock.Text>
-                                            <MultiBinding StringFormat="{x:Static res:Text.BaseValueEquation}">
-                                                <Binding Path="Value.Value" />
-                                                <Binding Path="Value.BaseValue" />
-                                                <Binding Path="Value.AddedValue" />
-                                            </MultiBinding>
-                                        </TextBlock.Text>
-                                    </TextBlock>
-                                </Border>
+                                <Grid.Style>
+                                    <Style TargetType="{x:Type Grid}">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Species.SpeciesType}"
+                                                         Value="{x:Static hexMain:SpeciesTypeEnum.Silicoid}">
+                                                <Setter Property="Visibility" Value="Visible" />
+
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Grid.Style>
+                                <Image
+                                    Stretch="UniformToFill"
+                                    Source="/Resources/species/silicoid.jpg" />
                             </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </Grid>
+                            <Grid>
+                                <Grid.Style>
+                                    <Style TargetType="{x:Type Grid}">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Species.SpeciesType}"
+                                                         Value="{x:Static hexMain:SpeciesTypeEnum.Zoallan}">
+                                                <Setter Property="Visibility" Value="Visible" />
 
-            <!-- stats -->
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Grid.Style>
+                                <Image
+                                    Stretch="UniformToFill"
+                                    Source="/Resources/species/zoallan.png" />
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-
-                <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="Gray">
-                    <TextBlock Text="Stats" HorizontalAlignment="Center" />
-                </Border>
+                            </Grid>
 
 
-                <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
-                    <controls:ItemWithPool Count="{Binding HitPoints.Value}">
-                        <controls:ItemWithPool.Label>
-                            <MultiBinding StringFormat="{x:Static res:Text.HitPoints}">
-                                <Binding Path="HitPoints.Value" />
-                                <Binding Path="HitPoints.BaseValue" />
-                                <Binding Path="HitPoints.AddedValue" />
-                            </MultiBinding>
-                        </controls:ItemWithPool.Label>
-                    </controls:ItemWithPool>
-                </Border>
-
-
-                <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
-                    <controls:ItemWithPool Count="{Binding Luck.Value}">
-                        <controls:ItemWithPool.Label>
-                            <MultiBinding StringFormat="{x:Static res:Text.LuckPoints}">
-                                <Binding Path="Luck.Value" />
-                                <Binding Path="Luck.BaseValue" />
-                                <Binding Path="Luck.AddedValue" />
-                            </MultiBinding>
-                        </controls:ItemWithPool.Label>
-                    </controls:ItemWithPool>
-                </Border>
-
-
-                <Border Grid.Row="3" Grid.Column="0">
-                    <TextBlock Text="Move:" />
-                </Border>
-                <Border Grid.Row="3" Grid.Column="1">
-                    <TextBlock>
-                        <TextBlock.Text>
-                            <MultiBinding StringFormat="{x:Static res:Text.BaseValueEquation}">
-                                <Binding Path="Species.Movement.Value" />
-                                <Binding Path="Species.Movement.BaseValue" />
-                                <Binding Path="Species.Movement.AddedValue" />
-                            </MultiBinding>
-                        </TextBlock.Text>
-                    </TextBlock>
-                </Border>
-
-
-                <Border Grid.Row="4" Grid.Column="0">
-                    <TextBlock Text="Hands:" />
-                </Border>
-                <Border Grid.Row="4" Grid.Column="1">
-                    <TextBlock>
-                        <TextBlock.Text>
-                            <MultiBinding StringFormat="{x:Static res:Text.BaseValueEquation}">
-                                <Binding Path="Species.Hands.Value" />
-                                <Binding Path="Species.Hands.BaseValue" />
-                                <Binding Path="Species.Hands.AddedValue" />
-                            </MultiBinding>
-                        </TextBlock.Text>
-                    </TextBlock>
-                </Border>
-
-
-                <Border Grid.Row="5" Grid.Column="0">
-                    <TextBlock Text="Target:" />
-                </Border>
-                <Border Grid.Row="5" Grid.Column="1">
-                    <TextBlock>
-                        <TextBlock.Text>
-                            <MultiBinding StringFormat="{x:Static res:Text.BaseValueEquation}">
-                                <Binding Path="Species.TargetNumber.Value" />
-                                <Binding Path="Species.TargetNumber.BaseValue" />
-                                <Binding Path="Species.TargetNumber.AddedValue" />
-                            </MultiBinding>
-                        </TextBlock.Text>
-                    </TextBlock>
-                </Border>
-
-
-                <Border Grid.Row="6" Grid.Column="0">
-                    <TextBlock Text="Carry:" />
-                </Border>
-                <Border Grid.Row="6" Grid.Column="1">
-                    <TextBlock>
-                        <TextBlock.Text>
-                            <MultiBinding StringFormat="{x:Static res:Text.BaseValueEquation}">
-                                <Binding Path="CarryCapacity.Value" />
-                                <Binding Path="CarryCapacity.BaseValue" />
-                                <Binding Path="CarryCapacity.AddedValue" />
-                            </MultiBinding>
-                        </TextBlock.Text>
-                    </TextBlock>
-                </Border>
-
-
-            </Grid>
-        </Grid>
-
-        <!-- special abilities -->
-        <Grid Grid.Row="2" Grid.Column="0" Grid.IsSharedSizeScope="True"  Grid.ColumnSpan="2" HorizontalAlignment="Left" MaxWidth="1700">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-
-            <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="Gray">
-                <TextBlock Text="Special Abilities" HorizontalAlignment="Center" />
-            </Border>
-            <ItemsControl Grid.Row="1" ItemsSource="{Binding Species.AlienAbilities}" Background="LightGray">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="{x:Type hexMain:SpecialAbility}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" SharedSizeGroup="SpecialAbilityKey" />
-                                <ColumnDefinition Width="Auto" SharedSizeGroup="SpecialAbilityValue" />
-                            </Grid.ColumnDefinitions>
-
-                            <Border Grid.Column="0" Style="{StaticResource BorderStyle}">
-                                <TextBlock Text="{Binding Name}" />
-                            </Border>
-                            <Border Grid.Column="1" Style="{StaticResource BorderStyle}">
-                                <StackPanel>
-                                    <TextBlock Text="{Binding Description}" />
-                                </StackPanel>
-                            </Border>
                         </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-            <ItemsControl Grid.Row="2" ItemsSource="{Binding SpecialAbilities}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="{x:Type hexMain:SpecialAbility}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" SharedSizeGroup="SpecialAbilityKey" />
-                                <ColumnDefinition Width="Auto" SharedSizeGroup="SpecialAbilityValue" />
-                            </Grid.ColumnDefinitions>
 
-                            <Border Grid.Column="0" Style="{StaticResource BorderStyle}">
-                                <TextBlock Text="{Binding Name}" />
-                            </Border>
-                            <Border Grid.Column="1" Style="{StaticResource BorderStyle}">
-                                <StackPanel>
-                                    <TextBlock Text="{Binding ShortDescription}" TextWrapping="Wrap" 
-                                               MaxWidth="550"
-                                               HorizontalAlignment="Left" />
-                                    <Grid HorizontalAlignment="Center" Visibility="{Binding HasPool, Converter={StaticResource b2v}}">
-                                        <controls:ItemWithPool Count="{Binding Pool}" Label="{Binding PoolDescription}" />
-                                    </Grid>
-                                </StackPanel>
-                            </Border>
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </Grid>
-
-        <!-- equipments -->
-        <Grid Grid.Row="3" Grid.Column="0"  Grid.ColumnSpan="2" HorizontalAlignment="Left" Grid.IsSharedSizeScope="True" >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" SharedSizeGroup="EquipName" />
-                <ColumnDefinition Width="Auto" SharedSizeGroup="EquipMass" />
-                <ColumnDefinition Width="Auto" SharedSizeGroup="EquipUpgraded" />
-                <ColumnDefinition Width="*"  />
-            </Grid.ColumnDefinitions>
-
-            <Border Grid.Row="0" Grid.Column="0" Background="DarkGray" Grid.ColumnSpan="4">
-                <TextBlock Text="Equipment" HorizontalAlignment="Center"  />
-            </Border>
+                    </Border>
 
 
-            <Border Grid.Row="1" Grid.Column="0" Background="LightGray" >
-                <TextBlock Text="Name"   />
-            </Border>
-            <Border Grid.Row="1" Grid.Column="1" Background="LightGray" >
-                <TextBlock Text="Mass"   />
-            </Border>
-            <Border Grid.Row="1" Grid.Column="2" Background="LightGray" >
-                <TextBlock Text="Upgraded"   />
-            </Border>
-            <Border Grid.Row="1" Grid.Column="3" Background="LightGray" >
-                <TextBlock Text="Description"   />
-            </Border>
+                </Grid>
 
 
-            <ItemsControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4"  ItemsSource="{Binding Equipments}" MaxWidth="635">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="{x:Type hexMain:Equipment}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" SharedSizeGroup="EquipName" />
-                                <ColumnDefinition Width="Auto" SharedSizeGroup="EquipMass" />
-                                <ColumnDefinition Width="Auto" SharedSizeGroup="EquipUpgraded" />
-                                <ColumnDefinition Width="*"  />
-                            </Grid.ColumnDefinitions>
+                <!-- numbers -->
+                <Grid Grid.Row="0" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
-                        <Border Grid.Column="0" Style="{StaticResource BorderStyle}">
-                            <TextBlock Text="{Binding Name}" />
+                    <!-- skills -->
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Border Grid.Row="0" Background="Gray">
+                            <TextBlock Text="Skills" HorizontalAlignment="Center" />
                         </Border>
-                            <Border Grid.Column="1" Style="{StaticResource BorderStyle}">
-                                <TextBlock Text="{Binding Mass}" />
-                            </Border>
-                            <Border Grid.Column="2" Style="{StaticResource BorderStyle}">
-                                <TextBlock Text="{Binding Upgraded}" />
-                            </Border>
-                            <Border Grid.Column="3" Style="{StaticResource BorderStyle}">
-                                <TextBlock Text="{Binding Description}" TextWrapping="Wrap" />
-                            </Border>
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
 
-        </Grid>
-        
-        
+                        <ItemsControl Grid.Row="1"
+                                      Grid.IsSharedSizeScope="True"
+                                      ItemsSource="{Binding Skills}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="{x:Type hexMain:Skill}">
+                                    <Grid>
+                                        <Grid.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Margin" Value="2" />
+                                            </Style>
+                                        </Grid.Resources>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" SharedSizeGroup="SkillKey" />
+                                            <ColumnDefinition Width="Auto" SharedSizeGroup="SkillValue" />
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.Column="0" Style="{StaticResource BorderStyle}">
+                                            <Border Background="{Binding SkillColor}">
+                                                <TextBlock 
+                                                    Text="{Binding SkillType}" />
+                                            </Border>
+                                        </Border>
+                                        <Border Grid.Column="1" Style="{StaticResource BorderStyle}">
+                                            <TextBlock>
+                                                <TextBlock.Text>
+                                                    <MultiBinding StringFormat="{x:Static res:Text.BaseValueEquation}">
+                                                        <Binding Path="Value.Value" />
+                                                        <Binding Path="Value.BaseValue" />
+                                                        <Binding Path="Value.AddedValue" />
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </Border>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>
 
-    </Grid>
+                    <!-- stats -->
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
 
-    </Border>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="Gray">
+                            <TextBlock Text="Stats" HorizontalAlignment="Center" />
+                        </Border>
+
+
+                        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                            <controls:ItemWithPool Count="{Binding HitPoints.Value}">
+                                <controls:ItemWithPool.Label>
+                                    <MultiBinding StringFormat="{x:Static res:Text.HitPoints}">
+                                        <Binding Path="HitPoints.Value" />
+                                        <Binding Path="HitPoints.BaseValue" />
+                                        <Binding Path="HitPoints.AddedValue" />
+                                    </MultiBinding>
+                                </controls:ItemWithPool.Label>
+                            </controls:ItemWithPool>
+                        </Border>
+
+
+                        <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                            <controls:ItemWithPool Count="{Binding Luck.Value}">
+                                <controls:ItemWithPool.Label>
+                                    <MultiBinding StringFormat="{x:Static res:Text.LuckPoints}">
+                                        <Binding Path="Luck.Value" />
+                                        <Binding Path="Luck.BaseValue" />
+                                        <Binding Path="Luck.AddedValue" />
+                                    </MultiBinding>
+                                </controls:ItemWithPool.Label>
+                            </controls:ItemWithPool>
+                        </Border>
+
+
+                        <Border Grid.Row="3" Grid.Column="0">
+                            <TextBlock Text="Move:" />
+                        </Border>
+                        <Border Grid.Row="3" Grid.Column="1">
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{x:Static res:Text.BaseValueEquation}">
+                                        <Binding Path="Species.Movement.Value" />
+                                        <Binding Path="Species.Movement.BaseValue" />
+                                        <Binding Path="Species.Movement.AddedValue" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </Border>
+
+
+                        <Border Grid.Row="4" Grid.Column="0">
+                            <TextBlock Text="Hands:" />
+                        </Border>
+                        <Border Grid.Row="4" Grid.Column="1">
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{x:Static res:Text.BaseValueEquation}">
+                                        <Binding Path="Species.Hands.Value" />
+                                        <Binding Path="Species.Hands.BaseValue" />
+                                        <Binding Path="Species.Hands.AddedValue" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </Border>
+
+
+                        <Border Grid.Row="5" Grid.Column="0">
+                            <TextBlock Text="Target:" />
+                        </Border>
+                        <Border Grid.Row="5" Grid.Column="1">
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{x:Static res:Text.BaseValueEquation}">
+                                        <Binding Path="Species.TargetNumber.Value" />
+                                        <Binding Path="Species.TargetNumber.BaseValue" />
+                                        <Binding Path="Species.TargetNumber.AddedValue" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </Border>
+
+
+                        <Border Grid.Row="6" Grid.Column="0">
+                            <TextBlock Text="Carry:" />
+                        </Border>
+                        <Border Grid.Row="6" Grid.Column="1">
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{x:Static res:Text.BaseValueEquation}">
+                                        <Binding Path="CarryCapacity.Value" />
+                                        <Binding Path="CarryCapacity.BaseValue" />
+                                        <Binding Path="CarryCapacity.AddedValue" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </Border>
+
+
+                    </Grid>
+                </Grid>
+
+                <!-- special abilities -->
+                <Grid Grid.Row="2" Grid.Column="0" Grid.IsSharedSizeScope="True" Grid.ColumnSpan="2"
+                      HorizontalAlignment="Left" MaxWidth="1700">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="Gray">
+                        <TextBlock Text="Special Abilities" HorizontalAlignment="Center" />
+                    </Border>
+                    <ItemsControl Grid.Row="1" ItemsSource="{Binding Species.AlienAbilities}" Background="LightGray">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type hexMain:SpecialAbility}">
+                                <Grid>
+                                    <Grid.Resources>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Margin" Value="2" />
+                                        </Style>
+                                    </Grid.Resources>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" SharedSizeGroup="SpecialAbilityKey" />
+                                        <ColumnDefinition Width="Auto" SharedSizeGroup="SpecialAbilityValue" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Border Grid.Column="0" Style="{StaticResource BorderStyle}">
+                                        <TextBlock Text="{Binding Name}" />
+                                    </Border>
+                                    <Border Grid.Column="1" Style="{StaticResource BorderStyle}">
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding Description}" />
+                                        </StackPanel>
+                                    </Border>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <ItemsControl Grid.Row="2" ItemsSource="{Binding SpecialAbilities}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type hexMain:SpecialAbility}">
+                                <Grid>
+                                    <Grid.Resources>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Margin" Value="2" />
+                                        </Style>
+                                    </Grid.Resources>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" SharedSizeGroup="SpecialAbilityKey" />
+                                        <ColumnDefinition Width="Auto" SharedSizeGroup="SpecialAbilityValue" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Border Grid.Column="0" Style="{StaticResource BorderStyle}">
+                                        <TextBlock Text="{Binding Name}" />
+                                    </Border>
+                                    <Border Grid.Column="1" Style="{StaticResource BorderStyle}">
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding ShortDescription}" TextWrapping="Wrap"
+                                                       MaxWidth="550"
+                                                       HorizontalAlignment="Left" />
+                                            <Grid HorizontalAlignment="Center"
+                                                  Visibility="{Binding HasPool, Converter={StaticResource b2v}}">
+                                                <controls:ItemWithPool Count="{Binding Pool}"
+                                                                       Label="{Binding PoolDescription}" />
+                                            </Grid>
+                                        </StackPanel>
+                                    </Border>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+
+                <!-- equipments -->
+                <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left"
+                      Grid.IsSharedSizeScope="True">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="EquipName" />
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="EquipMass" />
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="EquipUpgraded" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Row="0" Grid.Column="0" Background="DarkGray" Grid.ColumnSpan="4">
+                        <TextBlock Text="Equipment" HorizontalAlignment="Center" />
+                    </Border>
+
+
+                    <Border Grid.Row="1" Grid.Column="0" Background="LightGray">
+                        <TextBlock Text="Name" />
+                    </Border>
+                    <Border Grid.Row="1" Grid.Column="1" Background="LightGray">
+                        <TextBlock Text="Mass" />
+                    </Border>
+                    <Border Grid.Row="1" Grid.Column="2" Background="LightGray">
+                        <TextBlock Text="Upgraded" />
+                    </Border>
+                    <Border Grid.Row="1" Grid.Column="3" Background="LightGray">
+                        <TextBlock Text="Description" />
+                    </Border>
+
+
+                    <ItemsControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" ItemsSource="{Binding Equipments}"
+                                  MaxWidth="635">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type hexMain:Equipment}">
+                                <Grid>
+                                    <Grid.Resources>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Margin" Value="2" />
+                                        </Style>
+                                    </Grid.Resources>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" SharedSizeGroup="EquipName" />
+                                        <ColumnDefinition Width="Auto" SharedSizeGroup="EquipMass" />
+                                        <ColumnDefinition Width="Auto" SharedSizeGroup="EquipUpgraded" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Border Grid.Column="0" Style="{StaticResource BorderStyle}">
+                                        <TextBlock Text="{Binding Name}" />
+                                    </Border>
+                                    <Border Grid.Column="1" Style="{StaticResource BorderStyle}">
+                                        <TextBlock Text="{Binding Mass}" />
+                                    </Border>
+                                    <Border Grid.Column="2" Style="{StaticResource BorderStyle}">
+                                        <TextBlock Text="{Binding Upgraded}" />
+                                    </Border>
+                                    <Border Grid.Column="3" Style="{StaticResource BorderStyle}">
+                                        <TextBlock Text="{Binding Description}" TextWrapping="Wrap" />
+                                    </Border>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                </Grid>
+
+
+            </Grid>
+
+        </Border>
+
+        <Border BorderBrush="Black" 
+                MinHeight="30"
+                Margin="20,0,20,0"
+                BorderThickness="1" />
+        <Border BorderBrush="Black" 
+                MinHeight="30"
+                Margin="20,0,20,0"
+                BorderThickness="1" />
+        <Border BorderBrush="Black" 
+                MinHeight="30"
+                Margin="20,0,20,0"
+                BorderThickness="1" />
+        <Border BorderBrush="Black" 
+                MinHeight="30"
+                Margin="20,0,20,0"
+                BorderThickness="1" />
+        <Border BorderBrush="Black" 
+                MinHeight="30"
+                Margin="20,0,20,0"
+                BorderThickness="1" />
+        <Border BorderBrush="Black" 
+                MinHeight="30"
+                Margin="20,0,20,20"
+                BorderThickness="1" />
+    </StackPanel>
 
 </Window>

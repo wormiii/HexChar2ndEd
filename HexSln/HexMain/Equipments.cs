@@ -147,6 +147,36 @@ namespace HexMain
         {
         }
     }
+    public class Monocle : Equipment
+    {
+        public Monocle(Character character)
+            : base(character)
+        {
+        }
+
+        public override string Name
+        {
+            get { return "Laser Monocle"; }
+        }
+
+        public override string Description
+        {
+            get
+            {
+                return
+                    "1 pt dmg, ignores dmg reduction, requires an action but not a hand";
+            }
+        }
+
+        protected override int BaseMass
+        {
+            get { return 1; }
+        }
+
+        public override void AlterCharacter()
+        {
+        }
+    }
 
     public class Blaster : Equipment
     {
