@@ -107,7 +107,7 @@ namespace HexMain
 
         public override string PoolDescription
         {
-            get { return "Combat"; }
+            get { return "Combat x 2"; }
         }
 
         public override void AlterCharacter()
@@ -409,7 +409,7 @@ namespace HexMain
         {
             get
             {
-    return Character.Skills.Single(x => x.SkillType == SkillsEnum.Combat).Value.BaseValue;
+    return 2 * Character.Skills.Single(x => x.SkillType == SkillsEnum.Combat).Value.BaseValue;
             }
         }
 

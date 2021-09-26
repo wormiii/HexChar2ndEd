@@ -8,8 +8,8 @@
         public MainWindow()
         {
             InitializeComponent();
-            //DataContext = new Hex();
-            DataContext = new Chelle();
+            DataContext = new Hex();
+            //DataContext = new Chelle();
         }
     }
 }
