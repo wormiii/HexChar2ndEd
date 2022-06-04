@@ -242,7 +242,7 @@ namespace HexMain
     }
 
 
-    public class Obsessive: NoChangeInCharacterSpecialAbility
+    public class Obsessive : NoChangeInCharacterSpecialAbility
     {
         public Obsessive
             (Character character) : base(character)
@@ -254,7 +254,25 @@ namespace HexMain
 
         public override string ShortDescription
         {
-            get { return "WHen spending 2nd or more luck on something, create a pool of 3 rerolles you may use on that same thing instead of 1 single reroll"; }
+            get { return "When spending 2nd or more luck on something, create a pool of 3 rerolls you may use on that same thing instead of 1 single reroll"; }
+        }
+    }
+
+
+
+    public class Blink : NoChangeInCharacterSpecialAbility
+    {
+        public Blink
+            (Character character) : base(character)
+        {
+        }
+
+        public override string Name => "Blink";
+        public override string Description => "Once per mission, blink to a random spot on the ship";
+
+        public override string ShortDescription
+        {
+            get { return "wwwwwWHen spending 2nd or more luck on something, create a pool of 3 rerolles you may use on that same thing instead of 1 single reroll"; }
         }
     }
 

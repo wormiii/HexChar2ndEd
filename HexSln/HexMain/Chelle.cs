@@ -2,6 +2,7 @@
 
 namespace HexMain
 {
+    /*
     public class Chelle : Character
     {
         public Chelle()
@@ -34,4 +35,5 @@ namespace HexMain
             InitializeCharacter();
         }
     }
+    */
 }

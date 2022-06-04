@@ -351,6 +351,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
                     <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="Gray">
@@ -383,7 +384,7 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                    <ItemsControl Grid.Row="2" ItemsSource="{Binding SpecialAbilities}">
+                    <ItemsControl Grid.Row="2" ItemsSource="{Binding EarnedAbilities}" Background="LightSlateGray">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate DataType="{x:Type hexMain:SpecialAbility}">
                                 <Grid>
@@ -403,10 +404,38 @@
                                     </Border>
                                     <Border Grid.Column="1" Style="{StaticResource BorderStyle}">
                                         <StackPanel>
+                                            <TextBlock Text="{Binding Description}" />
+                                        </StackPanel>
+                                    </Border>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <ItemsControl Grid.Row="3" ItemsSource="{Binding SpecialAbilities}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type hexMain:SpecialAbility}">
+                                <Grid>
+                                    <Grid.Resources>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Margin" Value="2" />
+                                        </Style>
+                                    </Grid.Resources>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" SharedSizeGroup="SpecialAbilityKey" />
+                                        <ColumnDefinition Width="Auto" SharedSizeGroup="SpecialAbilityValue" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Border Grid.Column="0" Style="{StaticResource BorderStyle}">
+                                        <TextBlock Text="{Binding Name}" />
+                                    </Border>
+                                    <Border Grid.Column="1" Style="{StaticResource BorderStyle}">
+                                        <StackPanel Orientation="Horizontal" >
                                             <TextBlock Text="{Binding ShortDescription}" TextWrapping="Wrap"
                                                        MaxWidth="550"
                                                        HorizontalAlignment="Left" />
                                             <Grid HorizontalAlignment="Center"
+                                                  Margin="30,0,0,0"
                                                   Visibility="{Binding HasPool, Converter={StaticResource b2v}}">
                                                 <controls:ItemWithPool Count="{Binding Pool}"
                                                                        Label="{Binding PoolDescription}" />
@@ -443,7 +472,8 @@
                         <TextBlock Text="Name" />
                     </Border>
                     <Border Grid.Row="1" Grid.Column="1" Background="LightGray">
-                        <TextBlock Text="Mass" />
+
+                            <TextBlock Text="{Binding TotalMass, StringFormat=Mass: ({0})}"  />
                     </Border>
                     <Border Grid.Row="1" Grid.Column="2" Background="LightGray">
                         <TextBlock Text="Upgraded" />
@@ -495,7 +525,7 @@
 
         </Border>
 
-        <Border BorderBrush="Black" 
+        <!--<Border BorderBrush="Black" 
                 MinHeight="30"
                 Margin="20,0,20,0"
                 BorderThickness="1" />
@@ -518,7 +548,7 @@
         <Border BorderBrush="Black" 
                 MinHeight="30"
                 Margin="20,0,20,20"
-                BorderThickness="1" />
+                BorderThickness="1" />-->
     </StackPanel>
 
 </Window>

@@ -85,6 +85,32 @@ namespace HexMain
             Character.Species.Movement.AddedValue += 1;
         }
     }
+    public class AutoNurse : Equipment
+    {
+        public AutoNurse(Character character)
+            : base(character)
+        {
+        }
+
+        public override string Name
+        {
+            get { return "Auto Nurse"; }
+        }
+
+        public override string Description
+        {
+            get { return "+1 point per die to heal (not skill check)"; }
+        }
+
+        protected override int BaseMass
+        {
+            get { return 6; }
+        }
+
+        public override void AlterCharacter()
+        {
+        }
+    }
 
     public class ToolKit : Equipment
     {

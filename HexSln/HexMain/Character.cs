@@ -14,6 +14,7 @@ namespace HexMain
             Equipments = new List<Equipment>();
             Skills = Enum.GetValues(typeof(SkillsEnum)).Cast<SkillsEnum>().Select(x => new Skill(x)).ToList();
             SpecialAbilities = new List<SpecialAbility>();
+            EarnedAbilities = new List<SpecialAbility>();
         }
 
         public string PlayerName { get; set; }
@@ -25,8 +26,11 @@ namespace HexMain
         public Species Species { get; set; }
         public ProfessionEnum Profession { get; set; }
         public List<SpecialAbility> SpecialAbilities { get; set; }
+        public List<SpecialAbility> EarnedAbilities { get; set; }
         public BaseAndAddedValue CarryCapacity { get; set; }
 
+
+        public int TotalMass => Equipments.Sum(x => x.Mass);
         public string Name { get; set; }
         public BaseAndAddedValue Luck { get; set; }
         public int Rank { get; set; }
@@ -40,6 +44,7 @@ namespace HexMain
                                   Species.BaseHitPoints;
             Species.AlienAbilities.ForEach(x => x.AlterCharacter());
             SpecialAbilities.ForEach(x => x.AlterCharacter());
+            EarnedAbilities.ForEach(x => x.AlterCharacter());
             Equipments.ForEach(x => x.AlterCharacter());
         }
     }
