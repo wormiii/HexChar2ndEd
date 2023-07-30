@@ -8,7 +8,7 @@ namespace HexMain
         {
             Name = "Hexadecimal, Jr.";
             PlayerName = "Bryan";
-            Rank = 9;
+            Rank = 10;
             Species = new SilicoidSpecies(this);
             Profession = ProfessionEnum.Scientist;
 
@@ -17,10 +17,10 @@ namespace HexMain
             Experience = 0;
 
             Skills.Single(x => x.SkillType == SkillsEnum.Athletics).Value.BaseValue = 3;
-            Skills.Single(x => x.SkillType == SkillsEnum.Science).Value.BaseValue = 8;
+            Skills.Single(x => x.SkillType == SkillsEnum.Science).Value.BaseValue = 9;
             Skills.Single(x => x.SkillType == SkillsEnum.Engineering).Value.BaseValue = 0;
             Skills.Single(x => x.SkillType == SkillsEnum.Combat).Value.BaseValue = 0;
-            Skills.Single(x => x.SkillType == SkillsEnum.Piloting).Value.BaseValue = 4;
+            Skills.Single(x => x.SkillType == SkillsEnum.Piloting).Value.BaseValue = 5;
 
             SpecialAbilities.Add(new TriageMedic(this));
             SpecialAbilities.Add(new SpaceLegs(this));
@@ -31,6 +31,7 @@ namespace HexMain
             SpecialAbilities.Add(new ForeThinker(this));
             SpecialAbilities.Add(new ToughSilicoid(this));
             SpecialAbilities.Add(new Obsessive(this));
+            SpecialAbilities.Add(new Calm(this));
 
             EarnedAbilities.Add(new Blink(this));
 

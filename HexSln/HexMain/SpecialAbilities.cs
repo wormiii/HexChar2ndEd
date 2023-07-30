@@ -20,6 +20,55 @@ namespace HexMain
         public abstract string ShortDescription { get; }
     }
 
+    public class Calm : SpecialAbility
+    {
+        public Calm(Character character) : base(character)
+        {
+        }
+
+        public override string Name
+        {
+            get { return "Calm"; }
+        }
+
+        public override string Description
+        {
+            get
+            {
+                return
+                    "May take an '8' on a skill check instead and before a roll";
+            }
+        }
+
+        public override string ShortDescription
+        {
+            get {
+                return "May take an '8' on a skill check instead and before a roll";
+                ;
+            }
+        }
+
+        public override bool HasPool
+        {
+            get { return true; }
+        }
+
+        public override int Pool
+        {
+            get { return Character.Rank * 2; }
+        }
+
+        public override string PoolDescription
+        {
+            get { return "Uses"; }
+        }
+
+        public override void AlterCharacter()
+        {
+        }
+    }
+
+
     public class FastLearner : SpecialAbility
     {
         public FastLearner(Character character) : base(character)
